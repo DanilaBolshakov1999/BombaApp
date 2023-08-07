@@ -66,6 +66,7 @@
 				0A8D8BB62A80ECDC00C48DAE /* Model */,
 				0A8D8BB72A80ECF800C48DAE /* View */,
 				0A8D8BB82A80ED0600C48DAE /* Controller */,
+				0A4864BF2A80E21D0095B234 /* Info.plist */,
 				0A8D8BBB2A80FDD700C48DAE /* SupportingFiles */,
 			);
 			path = "Bomba-Challenge1";
@@ -116,7 +117,6 @@
 			children = (
 				0A4864BA2A80E21D0095B234 /* Assets.xcassets */,
 				0A4864BC2A80E21D0095B234 /* LaunchScreen.storyboard */,
-				0A4864BF2A80E21D0095B234 /* Info.plist */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
