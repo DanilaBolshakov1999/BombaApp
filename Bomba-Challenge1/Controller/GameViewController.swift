@@ -45,7 +45,7 @@ final class GameViewController: UIViewController {
         начать игру
         """
         label.numberOfLines = 0
-        label.textColor = UIColor(red: 139/255, green: 60/255, blue: 218/255, alpha: 1)
+        label.textColor = UIColor.purpleText
         label.textAlignment = .center
         label.layer.borderColor = CGColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1)
         label.font = .systemFont(ofSize: 30)
@@ -64,7 +64,7 @@ final class GameViewController: UIViewController {
     private lazy var button: UIButton = {
         var element = UIButton(type: .system)
         element.titleLabel?.font = .systemFont(ofSize: 25)
-        element.backgroundColor = UIColor(red: 128/255, green: 49/255, blue: 167/255, alpha: 1)
+        element.backgroundColor = UIColor.purpleButton
         element.layer.cornerRadius = 35
         element.setTitle("Запустить", for: .normal)
         element.setTitleColor(.yellow, for: .normal)
