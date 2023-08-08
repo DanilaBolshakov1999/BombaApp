@@ -10,6 +10,7 @@ import UIKit
 final class GameViewController: UIViewController {
     
     //MARK: - UI
+    
     private lazy var backgroundView: UIImageView = {
         let element = UIImageView()
         element.image = UIImage(named: "backgroundImage")
