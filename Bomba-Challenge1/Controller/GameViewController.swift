@@ -73,7 +73,6 @@ final class GameViewController: UIViewController {
         return element
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setViews()
