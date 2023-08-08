@@ -11,19 +11,19 @@ import SnapKit
 final class MainViewController: UIViewController {
     
     //MARK: Propperties
-    var backgroungImageView: UIImageView = {
+    private var backgroungImageView: UIImageView = {
         let backgroundImage = UIImage(named: "backgroundImage")
         let imageView = UIImageView(image: backgroundImage)
         return imageView
     }()
-    var rulesButton: UIButton = {
+    private var rulesButton: UIButton = {
         let button = UIButton()
         let rulesImage = UIImage(named: "rules")
         button.setImage(rulesImage, for: .normal)
         return button
     }()
     
-    var startGameButton: UIButton = {
+    private var startGameButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .purpleButton
         button.setTitle("Старт игры", for: .normal)
@@ -32,7 +32,7 @@ final class MainViewController: UIViewController {
         return button
     }()
     
-    var categoryButton: UIButton = {
+    private var categoryButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .purpleButton
         button.setTitle("Категории", for: .normal)
@@ -41,7 +41,7 @@ final class MainViewController: UIViewController {
         return button
     }()
     
-    var topLabel: UILabel = {
+    private var topLabel: UILabel = {
         let label = UILabel()
         label.text = "Игра для компании"
         label.textAlignment = .center
@@ -49,7 +49,7 @@ final class MainViewController: UIViewController {
         return label
     }()
     
-    var bottomLabel: UILabel = {
+    private var bottomLabel: UILabel = {
         let label = UILabel()
         label.text = "БОМБА"
         label.font = .boldSystemFont(ofSize: 48)
@@ -58,12 +58,12 @@ final class MainViewController: UIViewController {
         return label
     }()
     
-    var bombImageView: UIImageView = {
+    private var bombImageView: UIImageView = {
         let bombImage = UIImage(named: "bombImage")
         let imageView = UIImageView(image: bombImage)
         return imageView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setOutlets()
@@ -74,9 +74,12 @@ final class MainViewController: UIViewController {
         super.viewDidAppear(animated)
         roundCornersForButtons()
     }
+}
+
+extension MainViewController {
     
-//MARK: Methods
-    func setOutlets() {
+    //MARK: Methods
+    private func setOutlets() {
         view.addSubview(backgroungImageView)
         view.addSubview(rulesButton)
         view.addSubview(categoryButton)
@@ -84,9 +87,12 @@ final class MainViewController: UIViewController {
         view.addSubview(topLabel)
         view.addSubview(bottomLabel)
         view.addSubview(bombImageView)
+        startGameButton.addTarget(self, action: #selector(startGameButtonPressed), for: .touchUpInside)
+        categoryButton.addTarget(self, action: #selector(categoryButtonPressed), for: .touchUpInside)
+        rulesButton.addTarget(self, action: #selector(rulesButtonPressed), for: .touchUpInside)
     }
     
-    func setConstraints() {
+    private func setConstraints() {
         backgroungImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -128,5 +134,17 @@ final class MainViewController: UIViewController {
         startGameButton.layer.cornerRadius = startGameButton.bounds.height / 2
         categoryButton.layer.cornerRadius = categoryButton.bounds.height / 2
     }
-
+    //MARK: - Button methods
+    @objc private func startGameButtonPressed() {
+        // navigationController?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: true)
+    }
+    
+    @objc private func categoryButtonPressed() {
+        // navigationController?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: true)
+    }
+    
+    @objc private func rulesButtonPressed() {
+        // navigationController?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: true)
+    }
+    
 }
