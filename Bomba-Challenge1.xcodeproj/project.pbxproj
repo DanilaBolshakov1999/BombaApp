@@ -11,11 +11,12 @@
 		0A4864B42A80E21A0095B234 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4864B32A80E21A0095B234 /* SceneDelegate.swift */; };
 		0A4864B62A80E21A0095B234 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4864B52A80E21A0095B234 /* ViewController.swift */; };
 		0A4864B92A80E21A0095B234 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A4864B72A80E21A0095B234 /* Main.storyboard */; };
-		0A4864BB2A80E21D0095B234 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A4864BA2A80E21D0095B234 /* Assets.xcassets */; };
 		0A4864BE2A80E21D0095B234 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A4864BC2A80E21D0095B234 /* LaunchScreen.storyboard */; };
 		0A8D8BBD2A8100F400C48DAE /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8D8BBC2A8100F300C48DAE /* UIColor+Extension.swift */; };
 		0A8D8BBF2A810B2900C48DAE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0A8D8BBE2A810B2900C48DAE /* README.md */; };
 		0ABEAEE42A824EB200E4F1DD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABEAEE32A824EB200E4F1DD /* MainViewController.swift */; };
+		0ABEAEE62A824FEA00E4F1DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ABEAEE52A824FEA00E4F1DD /* Assets.xcassets */; };
+		0ABEAEE92A8250C800E4F1DD /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0ABEAEE82A8250C800E4F1DD /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,12 +25,12 @@
 		0A4864B32A80E21A0095B234 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0A4864B52A80E21A0095B234 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0A4864B82A80E21A0095B234 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		0A4864BA2A80E21D0095B234 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A4864BD2A80E21D0095B234 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A4864BF2A80E21D0095B234 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A8D8BBC2A8100F300C48DAE /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		0A8D8BBE2A810B2900C48DAE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0ABEAEE32A824EB200E4F1DD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		0ABEAEE52A824FEA00E4F1DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0ABEAEE92A8250C800E4F1DD /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,7 +120,7 @@
 		0A8D8BBB2A80FDD700C48DAE /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				0A4864BA2A80E21D0095B234 /* Assets.xcassets */,
+				0ABEAEE52A824FEA00E4F1DD /* Assets.xcassets */,
 				0A4864BC2A80E21D0095B234 /* LaunchScreen.storyboard */,
 			);
 			path = SupportingFiles;
@@ -140,6 +142,9 @@
 			dependencies = (
 			);
 			name = "Bomba-Challenge1";
+			packageProductDependencies = (
+				0ABEAEE82A8250C800E4F1DD /* SnapKit */,
+			);
 			productName = "Bomba-Challenge1";
 			productReference = 0A4864AE2A80E21A0095B234 /* Bomba-Challenge1.app */;
 			productType = "com.apple.product-type.application";
@@ -168,6 +173,9 @@
 				Base,
 			);
 			mainGroup = 0A4864A52A80E21A0095B234;
+			packageReferences = (
+				0ABEAEE72A8250C800E4F1DD /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 0A4864AF2A80E21A0095B234 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -183,8 +191,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A4864BE2A80E21D0095B234 /* LaunchScreen.storyboard in Resources */,
-				0A4864BB2A80E21D0095B234 /* Assets.xcassets in Resources */,
 				0A8D8BBF2A810B2900C48DAE /* README.md in Resources */,
+				0ABEAEE62A824FEA00E4F1DD /* Assets.xcassets in Resources */,
 				0A4864B92A80E21A0095B234 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -426,6 +434,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0ABEAEE72A8250C800E4F1DD /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0ABEAEE82A8250C800E4F1DD /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0ABEAEE72A8250C800E4F1DD /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0A4864A62A80E21A0095B234 /* Project object */;
 }
