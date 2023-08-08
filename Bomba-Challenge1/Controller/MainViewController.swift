@@ -59,7 +59,7 @@ final class MainViewController: UIViewController {
     }()
     
     var bombImageView: UIImageView = {
-        let bombImage = UIImage(named: "bomb")
+        let bombImage = UIImage(named: "bombImage")
         let imageView = UIImageView(image: bombImage)
         return imageView
     }()
