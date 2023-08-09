@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Category {
+struct CategoryModel {
   
   enum CategoryImage: String, CaseIterable {
     case category1
