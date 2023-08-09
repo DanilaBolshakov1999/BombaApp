@@ -35,6 +35,12 @@ final class CategoryViewController: UIViewController {
 
   }
   
+  // MARK: - Actions Methods
+  @objc
+  func addTapped() {
+    navigationController?.popViewController(animated: true)
+  }
+  
 }
 
 // MARK: - Setting Views
@@ -44,7 +50,7 @@ private extension CategoryViewController {
     addSubviews()
     setupLayout()
     configureCollectionView()
-//    configureNavController()
+    configureNavController()
   }
   
 }
@@ -70,7 +76,11 @@ private extension CategoryViewController {
     appearance.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 25, weight: .bold),
                                       NSAttributedString.Key.foregroundColor: UIColor(named: "purpleText") ?? .white]
     navigationController?.navigationBar.standardAppearance = appearance
+    let leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .done, target: self, action: #selector(addTapped))
+    leftBarButtonItem.tintColor = .black
+    navigationItem.leftBarButtonItem = leftBarButtonItem
   }
+  
 }
 
 // MARK: - Layout
