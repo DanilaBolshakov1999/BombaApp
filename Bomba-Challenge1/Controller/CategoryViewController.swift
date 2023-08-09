@@ -11,9 +11,8 @@ import UIKit
 // MARK: - CategoryViewController
 final class CategoryViewController: UIViewController {
   
-  private let categoryImageArray = ["category1", "category2", "category3", "category4", "category5", "category6"]
-  private let nameCategoryArray = ["О Разном", "Спорт и Хобби", "Про Жизнь", "Знаменитости", "Искусство и Кино", "Природа"]
-  
+  private let categoryImageArray = Category.CategoryImage.allCases
+  private let nameCategoryArray = Category.CategoryName.allCases
   // MARK: - Private Property
   private lazy var backgroundView: UIImageView = {
     let backgroundView = UIImageView()
@@ -54,6 +53,7 @@ private extension CategoryViewController {
   }
   
 }
+
 // MARK: - Setting
 private extension CategoryViewController {
   func addSubviews() {
@@ -69,7 +69,6 @@ private extension CategoryViewController {
   
   func configureNavController() {
     title = "Категории"
-    navigationController?.hidesBarsOnSwipe = true
    
     let appearance = UINavigationBarAppearance()
     appearance.backgroundColor = .purple
@@ -114,11 +113,11 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
   
     guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.reuseIdentifier, for: indexPath) as? CategoryCell else { return UICollectionViewCell() }
     
-    let nameImage = categoryImageArray[indexPath.row]
+    let nameImage = categoryImageArray[indexPath.row].rawValue
     let image = UIImage(named: nameImage)
     let nameCategory = nameCategoryArray[indexPath.row]
     cell.imageView.image = image
-    cell.nameCategory.text = nameCategory
+    cell.nameCategory.text = nameCategory.rawValue
 
     return cell
   }
