@@ -135,6 +135,7 @@ extension MainViewController {
         categoryButton.layer.cornerRadius = categoryButton.bounds.height / 2
     }
     //MARK: - Button methods
+    
     @objc private func startGameButtonPressed() {
          navigationController?.pushViewController(GameViewController(), animated: true)
     }
