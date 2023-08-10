@@ -108,7 +108,7 @@ final class AnimationGameViewController: UIViewController {
     }
     
     @objc private func addTappedPause() {
-       
+        navigationController?.pushViewController(GameEndViewController(), animated: true)
     }
 }
 

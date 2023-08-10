@@ -160,12 +160,12 @@ private extension GameEndViewController {
       otherTaskButton.topAnchor.constraint(equalTo: punishmentLabel.bottomAnchor, constant: 30),
       otherTaskButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80),
       otherTaskButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80),
-      otherTaskButton.heightAnchor.constraint(equalToConstant: 50),
+      otherTaskButton.heightAnchor.constraint(equalToConstant: 70),
       
       startOverButton.topAnchor.constraint(equalTo: otherTaskButton.bottomAnchor, constant: 20),
       startOverButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80),
       startOverButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80),
-      startOverButton.heightAnchor.constraint(equalToConstant: 50),
+      startOverButton.heightAnchor.constraint(equalToConstant: 70),
       startOverButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
       ])
   }
