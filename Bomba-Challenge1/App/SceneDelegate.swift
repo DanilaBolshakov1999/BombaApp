@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
@@ -18,6 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
         let navVC = UINavigationController(rootViewController: MainViewController())
         window?.rootViewController = navVC
+        // ViewController = rootView
+        window?.rootViewController = RulesViewController()
         window?.makeKeyAndVisible()
     }
 

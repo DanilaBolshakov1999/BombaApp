@@ -90,6 +90,7 @@
 		0A8D8BB72A80ECF800C48DAE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				84BAE1AF2A82722B0025AB1A /* TableCellTableViewCell.swift */,
 				0A4864B72A80E21A0095B234 /* Main.storyboard */,
 				5273F5372A82910800A285B5 /* CategoryCell.swift */,
 			);
@@ -214,6 +215,8 @@
 				5273F5362A8290EC00A285B5 /* CategoryViewController.swift in Sources */,
 				0A4864B22A80E21A0095B234 /* AppDelegate.swift in Sources */,
 				0A4864B42A80E21A0095B234 /* SceneDelegate.swift in Sources */,
+				8451FF122A81774C0011B0A7 /* RulesViewController.swift in Sources */,
+				84BAE1B02A82722B0025AB1A /* TableCellTableViewCell.swift in Sources */,
 				0A8D8BBD2A8100F400C48DAE /* UIColor+Extension.swift in Sources */,
 				0ABEAEE42A824EB200E4F1DD /* MainViewController.swift in Sources */,
 				5273F5382A82910800A285B5 /* CategoryCell.swift in Sources */,
