@@ -12,7 +12,7 @@ import UIKit
 final class GameEndViewController: UIViewController {
   
   // MARK: - panishments Model
-  let panishments = Punishments()
+  let panishments = GameData.shared.punishments
   
   // MARK: - Private Property
   private lazy var backgroundView: UIImageView = {
@@ -63,7 +63,7 @@ final class GameEndViewController: UIViewController {
   
   @objc
   func otherTaskTap() {
-    let randomPunishpment = panishments.getPunishments().randomElement()
+    let randomPunishpment = panishments.randomElement()
     punishmentLabel.text = randomPunishpment
   }
   
@@ -117,7 +117,7 @@ private extension GameEndViewController {
     otherTask.layer.cornerRadius = 30
     otherTask.layer.borderColor = UIColor.black.cgColor
     otherTask.layer.borderWidth = 2
-    otherTask.titleLabel?.font = UIFont.systemFont(ofSize: 25, weight: .bold)
+    otherTask.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
     otherTask.backgroundColor = UIColor.purpleButton
     return otherTask
   }
@@ -160,12 +160,12 @@ private extension GameEndViewController {
       otherTaskButton.topAnchor.constraint(equalTo: punishmentLabel.bottomAnchor, constant: 30),
       otherTaskButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80),
       otherTaskButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80),
-      otherTaskButton.heightAnchor.constraint(equalToConstant: 70),
+      otherTaskButton.heightAnchor.constraint(equalToConstant: 50),
       
       startOverButton.topAnchor.constraint(equalTo: otherTaskButton.bottomAnchor, constant: 20),
       startOverButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80),
       startOverButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80),
-      startOverButton.heightAnchor.constraint(equalToConstant: 70),
+      startOverButton.heightAnchor.constraint(equalToConstant: 50),
       startOverButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
       ])
   }
