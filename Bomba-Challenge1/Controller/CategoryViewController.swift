@@ -12,6 +12,7 @@ import UIKit
 final class CategoryViewController: UIViewController {
   
   let gameData = GameData.shared
+
   // MARK: - Private Property
   private lazy var backgroundView: UIImageView = {
     let backgroundView = UIImageView()
