@@ -14,6 +14,7 @@
 		0A8D8BBD2A8100F400C48DAE /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8D8BBC2A8100F300C48DAE /* UIColor+Extension.swift */; };
 		0A8D8BBF2A810B2900C48DAE /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 0A8D8BBE2A810B2900C48DAE /* README.md */; };
 		0ABAB7782A84244F00C258BE /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABAB7772A84244F00C258BE /* CategoryModel.swift */; };
+		0ABAB77A2A851D5600C258BE /* CopyGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABAB7792A851D5600C258BE /* CopyGameVC.swift */; };
 		0ABEAEE42A824EB200E4F1DD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABEAEE32A824EB200E4F1DD /* MainViewController.swift */; };
 		0ABEAEE62A824FEA00E4F1DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ABEAEE52A824FEA00E4F1DD /* Assets.xcassets */; };
 		0ABEAEE92A8250C800E4F1DD /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0ABEAEE82A8250C800E4F1DD /* SnapKit */; };
@@ -37,6 +38,7 @@
 		0A8D8BBC2A8100F300C48DAE /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		0A8D8BBE2A810B2900C48DAE /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		0ABAB7772A84244F00C258BE /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CategoryModel.swift; path = "Bomba-Challenge1/Model/CategoryModel.swift"; sourceTree = SOURCE_ROOT; };
+		0ABAB7792A851D5600C258BE /* CopyGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyGameVC.swift; sourceTree = "<group>"; };
 		0ABEAEE32A824EB200E4F1DD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		0ABEAEE52A824FEA00E4F1DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0AF917182A837C96009F958E /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				0AF917182A837C96009F958E /* GameViewController.swift */,
 				5273F5352A8290EC00A285B5 /* CategoryViewController.swift */,
 				52D10F332A83D36E00FB7D0D /* GameEndViewController.swift */,
+				0ABAB7792A851D5600C258BE /* CopyGameVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 				0A4864B42A80E21A0095B234 /* SceneDelegate.swift in Sources */,
 				0A8D8BBD2A8100F400C48DAE /* UIColor+Extension.swift in Sources */,
 				0ABAB7782A84244F00C258BE /* CategoryModel.swift in Sources */,
+				0ABAB77A2A851D5600C258BE /* CopyGameVC.swift in Sources */,
 				0AF9171F2A83B77D009F958E /* CategoryD.swift in Sources */,
 				0AF9171D2A83B646009F958E /* GameController.swift in Sources */,
 				0ABEAEE42A824EB200E4F1DD /* MainViewController.swift in Sources */,
