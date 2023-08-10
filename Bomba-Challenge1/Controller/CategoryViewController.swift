@@ -11,8 +11,7 @@ import UIKit
 // MARK: - CategoryViewController
 final class CategoryViewController: UIViewController {
   
-    private let categoryImageArray = CategoryModel.CategoryImage.allCases
-  private let nameCategoryArray = CategoryModel.CategoryName.allCases
+  let gameData = GameData.shared
   // MARK: - Private Property
   private lazy var backgroundView: UIImageView = {
     let backgroundView = UIImageView()
@@ -106,26 +105,29 @@ private extension CategoryViewController {
 extension CategoryViewController: UICollectionViewDelegate, UICollectionViewDataSource {
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return categoryImageArray.count
+    return gameData.categories.count
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
   
     guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.reuseIdentifier, for: indexPath) as? CategoryCell else { return UICollectionViewCell() }
     
-    let nameImage = categoryImageArray[indexPath.row].rawValue
-    let image = UIImage(named: nameImage)
-    let nameCategory = nameCategoryArray[indexPath.row]
-    cell.imageView.image = image
-    cell.nameCategory.text = nameCategory.rawValue
+    let category = gameData.categories[indexPath.row]
+    cell.imageView.image = UIImage(named: category.imageName)
+    cell.nameCategory.text = category.name
 
     return cell
   }
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCell else { return }
+    
+    gameData.categories[indexPath.row].isSelected = !gameData.categories[indexPath.row].isSelected
+    gameData.getQuestionArray()
+    
     cell.selectCell = !cell.selectCell
     cell.checkmark.image = cell.selectCell ? UIImage(named: "checkmarkOn") :  UIImage(named: "checkmarkOff")
+    print(gameData.choiceQusetions)
   }
 }
 
