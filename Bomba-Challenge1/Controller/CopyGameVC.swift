@@ -78,6 +78,11 @@ final class CopyGameVC: UIViewController {
         return element
     }()
     
+    //MARK: Outlets
+    
+    var timer: Timer?
+    var countdown = 15
+    
     //MARK: - Life Cycle
     
     override func viewDidLayoutSubviews() {
@@ -121,11 +126,20 @@ final class CopyGameVC: UIViewController {
     }
     
     @objc private func addTappedBack() {
-        navigationController?.pushViewController(MainViewController(), animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
     @objc private func addTappedPause() {
-        navigationController?.pushViewController(MainViewController(), animated: true)
+        //navigationController?.pushViewController(MainViewController(), animated: true)
+       // timer?.isValid ? timer?.invalidate() : timer.
+    }
+    
+    @objc private func startButtonTapped() {
+        //start timer
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(<#T##@objc method#>), userInfo: nil, repeats: true)
+        //play sound
+        //start animation
+        //set label
     }
     
     //MARK: - Setup Views
@@ -136,12 +150,13 @@ final class CopyGameVC: UIViewController {
         mainTwoStackView.addArrangedSubview(mainLabelView)
         mainTwoStackView.addArrangedSubview(backgroundGame)
         mainTwoStackView.addArrangedSubview(button)
+        button.addTarget(self, action: #selector(startButtonTapped), for: .touchUpInside)
     }
 }
 
 //MARK: - Setup Constraints
 
-extension GameViewController {
+extension CopyGameVC {
     private func setupConstrains() {
         NSLayoutConstraint.activate([
             backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
