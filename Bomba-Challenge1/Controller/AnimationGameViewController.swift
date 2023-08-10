@@ -1,13 +1,13 @@
 //
-//  GameViewController.swift
+//  AnimationGameViewController.swift
 //  Bomba-Challenge1
 //
-//  Created by Danila Bolshakov on 07.08.2023.
+//  Created by Danila Bolshakov on 10.08.2023.
 //
 
 import UIKit
 
-final class GameViewController: UIViewController {
+final class AnimationGameViewController: UIViewController {
     
     //MARK: - UI
     
@@ -44,11 +44,7 @@ final class GameViewController: UIViewController {
     
     private lazy var mainLabelView: UILabel = {
         let label = UILabel()
-        label.text = """
-        Нажмите
-        "Запустить" чтобы
-        начать игру
-        """
+        label.text = "Вопрос"
         label.numberOfLines = 0
         label.textColor = UIColor.purpleText
         label.textAlignment = .center
@@ -66,18 +62,6 @@ final class GameViewController: UIViewController {
         return background
     }()
     
-    lazy var buttonPlay: UIButton = {
-        var button = UIButton(type: .system)
-        button.titleLabel?.font = .systemFont(ofSize: 25)
-        button.backgroundColor = UIColor.purpleButton
-        button.layer.cornerRadius = 35
-        button.setTitle("Запустить", for: .normal)
-        button.setTitleColor(.yellow, for: .normal)
-        button.layer.borderWidth = 2
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
     //MARK: - Life Cycle
     
     override func viewDidLayoutSubviews() {
@@ -90,12 +74,10 @@ final class GameViewController: UIViewController {
         setViews()
         configureNavController()
         setupConstrains()
-        buttonPlay.addTarget(self, action: #selector(startGameButtonPressed), for: .touchUpInside)
     }
     
     private func configureNavController() {
         title = "Игра"
-        
         let appearance = UINavigationBarAppearance()
         appearance.titleTextAttributes = [
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 25, weight: .bold),
@@ -116,10 +98,8 @@ final class GameViewController: UIViewController {
         
         leftBarButtonItem.tintColor = .black
         rightBarButtonItem.tintColor = .black
-        
         navigationItem.leftBarButtonItem = leftBarButtonItem
         navigationItem.rightBarButtonItem = rightBarButtonItem
-
         navigationController?.navigationBar.standardAppearance = appearance
     }
     
@@ -132,7 +112,7 @@ final class GameViewController: UIViewController {
     }
 }
 
-extension GameViewController {
+extension AnimationGameViewController {
     
     //MARK: - Setup Views
     
@@ -141,7 +121,6 @@ extension GameViewController {
         view.addSubview(mainStackView)
         mainStackView.addArrangedSubview(mainLabelView)
         mainStackView.addArrangedSubview(backgroundGame)
-        mainStackView.addArrangedSubview(buttonPlay)
     }
     
     //MARK: - Setup Constraints
@@ -156,17 +135,10 @@ extension GameViewController {
             mainStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            
-            buttonPlay.widthAnchor.constraint(equalToConstant: 274),
-            buttonPlay.heightAnchor.constraint(equalToConstant: 79)
+            mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
     }
-    
-    //MARK: - Button methods
-    
-    @objc private func startGameButtonPressed() {
-        navigationController?.pushViewController(AnimationGameViewController(), animated: true)
-    }
-
 }
+
+
+
