@@ -7,9 +7,9 @@
 
 import Foundation
 
-//struct Category {
-//    let name: String
-//    let imageName: String
-//    let questions: [String]
-//    var isSelected: Bool = true
-//}
+struct Category {
+    let name: String
+    let imageName: String
+    let questions: [String]
+    var isSelected: Bool = true
+}
