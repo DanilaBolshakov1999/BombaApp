@@ -144,7 +144,7 @@ extension MainViewController {
     }
     
     @objc private func rulesButtonPressed() {
-        // navigationController?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: true)
+         navigationController?.pushViewController(GameEndViewController(), animated: true)
     }
     
 }
