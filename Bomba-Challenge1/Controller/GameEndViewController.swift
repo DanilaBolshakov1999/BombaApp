@@ -15,10 +15,9 @@ final class GameEndViewController: UIViewController {
   let panishments = GameData.shared.punishments
   
   // MARK: - Private Property
-  private lazy var backgroundView: UIImageView = {
-    let backgroundView = UIImageView()
-    backgroundView.image = UIImage(named: "backgroundImage")
-    return backgroundView
+  private lazy var backgroundView: GradientView = {
+    let gradientView = GradientView(frame: .zero)
+    return gradientView
   }()
   
   private lazy var topLabel: UILabel = {

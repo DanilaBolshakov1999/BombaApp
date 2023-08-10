@@ -23,6 +23,7 @@
 		5273F5362A8290EC00A285B5 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5273F5352A8290EC00A285B5 /* CategoryViewController.swift */; };
 		5273F5382A82910800A285B5 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5273F5372A82910800A285B5 /* CategoryCell.swift */; };
 		52D10F342A83D36E00FB7D0D /* GameEndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D10F332A83D36E00FB7D0D /* GameEndViewController.swift */; };
+		52D10F3C2A85604E00FB7D0D /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D10F3B2A85604E00FB7D0D /* GradientView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		5273F5352A8290EC00A285B5 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		5273F5372A82910800A285B5 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		52D10F332A83D36E00FB7D0D /* GameEndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEndViewController.swift; sourceTree = "<group>"; };
+		52D10F3B2A85604E00FB7D0D /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				5273F5372A82910800A285B5 /* CategoryCell.swift */,
+				52D10F3B2A85604E00FB7D0D /* GradientView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 			files = (
 				0AF917192A837C96009F958E /* GameViewController.swift in Sources */,
 				0AF917212A83B7D2009F958E /* GameData.swift in Sources */,
+				52D10F3C2A85604E00FB7D0D /* GradientView.swift in Sources */,
 				5273F5362A8290EC00A285B5 /* CategoryViewController.swift in Sources */,
 				0A4864B22A80E21A0095B234 /* AppDelegate.swift in Sources */,
 				0A4864B42A80E21A0095B234 /* SceneDelegate.swift in Sources */,
