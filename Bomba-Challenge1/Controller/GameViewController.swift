@@ -11,6 +11,26 @@ final class GameViewController: UIViewController {
     
     //MARK: - UI
     
+    lazy var gradientLayer: CAGradientLayer = {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor.red.cgColor, UIColor.blue.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+        gradientLayer.cornerRadius = 20
+        return gradientLayer
+      }()
+    lazy var verticalView: UIView = {
+        let verticalView = UIView()
+        verticalView.layer.cornerRadius = 20
+        verticalView.layer.shadowColor = UIColor.black.cgColor
+        verticalView.layer.shadowRadius = 10
+        verticalView.layer.shadowOffset = CGSize.zero
+        verticalView.layer.shadowOpacity = 1
+        verticalView.backgroundColor = .darkGray
+        verticalView.layer.addSublayer(gradientLayer)
+        return verticalView
+      }()
+    
     private lazy var backgroundView: UIImageView = {
         let element = UIImageView()
         element.image = UIImage(named: "backgroundImage")
@@ -73,6 +93,14 @@ final class GameViewController: UIViewController {
         element.translatesAutoresizingMaskIntoConstraints = false
         return element
     }()
+    
+    //MARK: - Life Cycle
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        gradientLayer.frame = verticalView.bounds
+      }
     
     override func viewDidLoad() {
         super.viewDidLoad()
