@@ -7,16 +7,16 @@
 
 import Foundation
 
-class GameController {
-    
-    var gameData = GameData.shared
-
-    func start() -> String {
-        gameData.questionArray.randomElement() ?? "Нет данных"
-    }
-
-    func end() -> String {
-        gameData.punishments.randomElement() ?? "Нет данных"
-    }
-
-}
+//class GameController {
+//    
+//    var gameData = GameData.shared
+//
+//    func start() -> String {
+//        gameData.questionArray.randomElement() ?? "Нет данных"
+//    }
+//
+//    func end() -> String {
+//        gameData.punishments.randomElement() ?? "Нет данных"
+//    }
+//
+//}

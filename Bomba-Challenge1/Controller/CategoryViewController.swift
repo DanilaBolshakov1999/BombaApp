@@ -11,8 +11,8 @@ import UIKit
 // MARK: - CategoryViewController
 final class CategoryViewController: UIViewController {
   
-  private let categoryImageArray = Category.CategoryImage.allCases
-  private let nameCategoryArray = Category.CategoryName.allCases
+    private let categoryImageArray = CategoryModel.CategoryImage.allCases
+  private let nameCategoryArray = CategoryModel.CategoryName.allCases
   // MARK: - Private Property
   private lazy var backgroundView: UIImageView = {
     let backgroundView = UIImageView()
