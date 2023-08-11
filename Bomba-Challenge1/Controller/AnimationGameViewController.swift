@@ -6,10 +6,20 @@
 //
 
 import UIKit
+import ImageIO
 
 final class AnimationGameViewController: UIViewController {
     
     //MARK: - UI
+    
+    private lazy var imageViewBomb: CAGradientLayer = {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor.yellow.cgColor, UIColor.orange.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0.5)
+        gradientLayer.endPoint = CGPoint(x: 0, y: 1)
+        gradientLayer.cornerRadius = 20
+        return gradientLayer
+    }()
     
     private lazy var gradientLayer: CAGradientLayer = {
         let gradientLayer = CAGradientLayer()
@@ -56,11 +66,10 @@ final class AnimationGameViewController: UIViewController {
     
     private lazy var backgroundGame: UIImageView = {
         let background = UIImageView()
-        background.image = UIImage(named: "bombGame")
-        background.contentMode = .scaleAspectFit
-        background.translatesAutoresizingMaskIntoConstraints = false
         return background
     }()
+    
+    let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
     
     //MARK: - Life Cycle
     
@@ -74,6 +83,7 @@ final class AnimationGameViewController: UIViewController {
         setViews()
         configureNavController()
         setupConstrains()
+        displayGIF(named: "bomb", in: imageView)
     }
     
     private func configureNavController() {
@@ -108,11 +118,62 @@ final class AnimationGameViewController: UIViewController {
     }
     
     @objc private func addTappedPause() {
-       
+
     }
 }
 
 extension AnimationGameViewController {
+    
+    func displayGIF(named fileName: String, in imageView: UIImageView) {
+        guard let gifURL = Bundle.main.url(forResource: fileName, withExtension: "gif") else {
+            print("Не удалось найти файл GIF.")
+            return
+        }
+        
+        guard let gifSource = CGImageSourceCreateWithURL(gifURL as CFURL, nil) else {
+            print("Не удалось создать источник CGImage для GIF.")
+            return
+        }
+        
+        let gifCount = CGImageSourceGetCount(gifSource)
+        var images: [UIImage] = []
+        var gifDuration: TimeInterval = 0.0
+        
+        for index in 0..<gifCount {
+            guard let cgImage = CGImageSourceCreateImageAtIndex(gifSource, index, nil) else {
+                continue
+            }
+            
+            let frameDelay = delayForImageAtIndex(Int(index), source: gifSource)
+            gifDuration += frameDelay
+            
+            let image = UIImage(cgImage: cgImage)
+            images.append(image)
+        }
+        
+        imageView.animationImages = images
+        imageView.animationDuration = gifDuration
+        imageView.startAnimating()
+    }
+
+    func delayForImageAtIndex(_ index: Int, source: CGImageSource) -> TimeInterval {
+        var delay = 0.1
+        
+        let properties: CFDictionary = CGImageSourceCopyPropertiesAtIndex(source, index, nil)!
+        let gifInfo = unsafeBitCast(CFDictionaryGetValue(properties, Unmanaged.passUnretained(kCGImagePropertyGIFDictionary).toOpaque()), to: CFDictionary.self)
+        
+        var delayTime: AnyObject? = unsafeBitCast(CFDictionaryGetValue(gifInfo, Unmanaged.passUnretained(kCGImagePropertyGIFDelayTime).toOpaque()), to: AnyObject.self)
+        
+        if delayTime == nil {
+            delayTime = unsafeBitCast(CFDictionaryGetValue(gifInfo, Unmanaged.passUnretained(kCGImagePropertyGIFUnclampedDelayTime).toOpaque()), to: AnyObject.self)
+        }
+        
+        if let delayObject = delayTime as? NSNumber {
+            delay = delayObject.doubleValue
+        }
+        
+        return delay
+    }
     
     //MARK: - Setup Views
     
@@ -120,6 +181,7 @@ extension AnimationGameViewController {
         view.addSubview(mainBackgroundView)
         view.addSubview(mainStackView)
         mainStackView.addArrangedSubview(mainLabelView)
+        mainStackView.addArrangedSubview(backgroundGame)
         mainStackView.addArrangedSubview(backgroundGame)
     }
     
@@ -136,9 +198,8 @@ extension AnimationGameViewController {
             mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
+            
+            
         ])
     }
 }
-
-
-
