@@ -11,15 +11,30 @@ import SnapKit
 final class MainViewController: UIViewController {
     
     //MARK: Propperties
-    private var backgroungImageView: UIImageView = {
-        let backgroundImage = UIImage(named: "backgroundImage")
-        let imageView = UIImageView(image: backgroundImage)
-        return imageView
+    private let gradientLayer: CAGradientLayer = {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor.yellow.cgColor, UIColor.orange.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0.5)
+        gradientLayer.endPoint = CGPoint(x: 0, y: 1)
+        gradientLayer.cornerRadius = 20
+        return gradientLayer
+    }()
+    private lazy var gradientBackgroundView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 20
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowRadius = 10
+        view.layer.shadowOffset = CGSize.zero
+        view.layer.shadowOpacity = 1
+        view.layer.addSublayer(gradientLayer)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     private var rulesButton: UIButton = {
         let button = UIButton()
         let rulesImage = UIImage(named: "rules")
         button.setImage(rulesImage, for: .normal)
+        
         return button
     }()
     
@@ -29,6 +44,8 @@ final class MainViewController: UIViewController {
         button.setTitle("Старт игры", for: .normal)
         button.setTitleColor(.yellowText, for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 24)
+        button.layer.borderColor = UIColor.black.cgColor
+        button.layer.borderWidth = 2
         return button
     }()
     
@@ -38,6 +55,8 @@ final class MainViewController: UIViewController {
         button.setTitle("Категории", for: .normal)
         button.setTitleColor(.yellowText, for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 24)
+        button.layer.borderColor = UIColor.black.cgColor
+        button.layer.borderWidth = 2
         return button
     }()
     
@@ -70,6 +89,11 @@ final class MainViewController: UIViewController {
         setConstraints()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        gradientLayer.frame = gradientBackgroundView.bounds
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         roundCornersForButtons()
@@ -80,7 +104,7 @@ extension MainViewController {
     
     //MARK: Methods
     private func setOutlets() {
-        view.addSubview(backgroungImageView)
+        view.addSubview(gradientBackgroundView)
         view.addSubview(rulesButton)
         view.addSubview(categoryButton)
         view.addSubview(startGameButton)
@@ -93,7 +117,7 @@ extension MainViewController {
     }
     
     private func setConstraints() {
-        backgroungImageView.snp.makeConstraints { make in
+        gradientBackgroundView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         rulesButton.snp.makeConstraints { make in
