@@ -36,12 +36,14 @@ final class RulesViewController: UIViewController {
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.frame = view.bounds
-        scrollView.contentSize = contentSize
+        //scrollView.contentSize = contentSize
         return scrollView
     }()
     
     private let labelTitle = UILabel.labelTitle(with: "Правила Игры")
     private let categoryLabel = UILabel.labelTitle(with: "Категории")
+    private let label8 = UILabel.labelSubTitle(with: "В игре доступно 6 категорий и более 90 вопросов.")
+    private let label9 = UILabel.labelSubTitle(with: "Можно выбрать сразу несколько категорий для игры.")
 
     private var playButtonImageView: UIImageView = {
         let view = UIImageView(image: UIImage(named: "gameStartButtonImage"))
@@ -50,15 +52,16 @@ final class RulesViewController: UIViewController {
         return view
     }()
     
-    private var contentSize: CGSize {
-        CGSize(width: view.frame.width, height: view.frame.height + 1000) //MARK: - change to xMax
-    }
+//    private var contentSize: CGSize {
+//        CGSize(width: view.frame.width, height: view.frame.height + 1000) //MARK: - change to xMax
+//    }
     
     //MARK: - Life Cycle
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         gradientLayer.frame = gradientBackgroundView.bounds
+        scrollView.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height + 300)
     }
     
     override func viewDidLoad() {
@@ -142,6 +145,8 @@ extension RulesViewController {
         scrollView.addSubview(imageViewSeven)
         scrollView.addSubview(labelSeven)
         scrollView.addSubview(categoryLabel)
+        scrollView.addSubview(label8)
+        scrollView.addSubview(label9)
         
     }
     
@@ -231,6 +236,14 @@ extension RulesViewController {
         categoryLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(imageViewSeven.snp.bottom).inset(-40)
+        }
+        label8.snp.makeConstraints { make in
+            make.top.equalTo(categoryLabel.snp.bottom).inset(-40)
+            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
+        }
+        label9.snp.makeConstraints { make in
+            make.top.equalTo(label8.snp.bottom).inset(-40)
+            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
         }
     }
 }

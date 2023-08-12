@@ -28,4 +28,14 @@ extension UILabel {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }
+    
+    static func labelSubTitle(with name: String) -> UILabel {
+        let label = UILabel()
+        label.text = name
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.font = .boldSystemFont(ofSize: 24)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }
 }
