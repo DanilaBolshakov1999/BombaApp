@@ -180,22 +180,19 @@ final class RulesViewController: UIViewController {
     
     //MARK: - Private Properties
     
-    private lazy var imageViewOne = UIImageView(image: UIImage(named: "numberOne"))
-    private lazy var imageViewTwo = UIImageView(image: UIImage(named: "numberThree"))
-    private lazy var imageViewThree = UIImageView(image: UIImage(named: "numberThree"))
-    private lazy var imageViewFour = UIImageView(image: UIImage(named: "numberFour"))
-    private lazy var imageViewFive = UIImageView(image: UIImage(named: "numberFive"))
-    private lazy var imageViewSix = UIImageView(image: UIImage(named: "numberSix"))
-    private lazy var imageViewSeven = UIImageView(image: UIImage(named: "numberSeven"))
+    private let imageViewOne = UIImageView(imageName: "numberOne")
+    private let imageViewTwo = UIImageView(imageName: "numberTwo")
+    private let imageViewThree = UIImageView(imageName: "numberThree")
+    private let imageViewFour = UIImageView(imageName: "numberFour")
+    private let imageViewFive = UIImageView(imageName: "numberFive")
+    private let imageViewSix = UIImageView(imageName: "numberSix")
+    private let imageViewSeven = UIImageView(imageName: "numberSeven")
     
-    private lazy var labelOne = UILabel(
+    private let labelOne = UILabel(
         labelName: "Все игроки становятся в круг.")
     
     private lazy var labelTwo = UILabel(
-        labelName: """
-        "Первый игрок берет телефон
-        и нажимает кнопку
-""")
+        labelName: "Первый игрок берет телефон и нажимает кнопку:")
     
     private lazy var labelThree = UILabel(
         labelName: """
@@ -268,6 +265,10 @@ extension RulesViewController {
         view.addSubview(scrollView)
         
         scrollView.addSubview(labelTitle)
+        scrollView.addSubview(imageViewOne)
+        scrollView.addSubview(labelOne)
+        scrollView.addSubview(imageViewTwo)
+        scrollView.addSubview(labelTwo)
     }
     
     //MARK: - Setup Constraints
@@ -283,6 +284,23 @@ extension RulesViewController {
         labelTitle.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(40)
             make.centerX.equalToSuperview()
+        }
+        imageViewOne.snp.makeConstraints { make in
+            make.top.equalTo(labelTitle.snp.bottom).inset(-26)
+            make.leading.equalToSuperview().inset(8)
+        }
+        labelOne.snp.makeConstraints { make in
+            make.leading.equalTo(imageViewOne.snp.trailing).inset(16)
+            make.top.equalTo(imageViewOne).inset(29)
+        }
+        imageViewTwo.snp.makeConstraints { make in
+            make.leading.equalTo(imageViewOne)
+            make.top.equalTo(labelOne.snp.bottom)
+        }
+        labelTwo.snp.makeConstraints { make in
+            make.leading.equalTo(labelOne)
+            make.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(imageViewTwo).inset(29)
         }
     }
 }
