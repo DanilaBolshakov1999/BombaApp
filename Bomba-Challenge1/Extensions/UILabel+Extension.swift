@@ -12,6 +12,8 @@ extension UILabel {
         self.init()
         self.font = .boldSystemFont(ofSize: 15)
         self.text = labelName
+        self.numberOfLines = 0
+        self.textAlignment = .left
         self.translatesAutoresizingMaskIntoConstraints = false
     }
 }
