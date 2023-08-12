@@ -11,5 +11,6 @@ extension UIImageView  {
     convenience init(imageName: String) {
         self.init(frame: CGRect(origin: .zero, size: CGSize(width: 29, height: 29)))
         self.image = UIImage(named: imageName)
+        self.contentMode = .scaleAspectFill
     }
 }
