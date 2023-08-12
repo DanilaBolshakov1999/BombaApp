@@ -14,6 +14,6 @@ extension UILabel {
         self.text = labelName
         self.numberOfLines = 0
         self.textAlignment = .left
-        self.translatesAutoresizingMaskIntoConstraints = false
+        //self.translatesAutoresizingMaskIntoConstraints = false
     }
 }

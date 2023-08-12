@@ -40,21 +40,6 @@ final class RulesViewController: UIViewController {
         return scrollView
     }()
     
-//    private lazy var contentView: UIView = {
-//        let contentView = UIView()
-//        contentView.frame.size = contentSize
-//        return contentView
-//    }()
-    
-//    private let stackView: UIStackView = {
-//        let stackView = UIStackView()
-//        stackView.axis = .vertical
-//        stackView.alignment = .center
-//        //stackView.backgroundColor = .gray
-//        stackView.spacing = 10
-//        return stackView
-//    }()
-    
     private lazy var labelTitle: UILabel = { //???
         let label = UILabel()
         label.text = "Правила Игры"
@@ -66,98 +51,12 @@ final class RulesViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
-//    private let stackViewGeneral: UIStackView = {
-//        let stackView = UIStackView()
-//        stackView.axis = .vertical
-//        stackView.alignment = .leading//
-//        stackView.spacing = 0
-//        stackView.translatesAutoresizingMaskIntoConstraints = false
-//        return stackView
-//    }()
-    
-//    lazy var playButton: UIButton = {
-//        var button = UIButton(type: .system)
-//        button.titleLabel?.font = .systemFont(ofSize: 25)
-//        button.backgroundColor = UIColor.purpleButton
-//        button.layer.cornerRadius = 35
-//        button.setTitle("Cтарт Игры", for: .normal)
-//        button.setTitleColor(.yellow, for: .normal)
-//        button.layer.borderWidth = 2
-//        button.contentMode = .scaleAspectFit
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        return button
-//    }()
-    
-    ///MARK: - Stacks UPDATE!!!
-    
-//    private let stackViewAndLabelOne: UIStackView = {
-//        let stackView = UIStackView()
-//        stackView.axis = .horizontal
-//        stackView.alignment = .leading
-//        //stackView.backgroundColor = .brown
-//        stackView.spacing = 5
-//        return stackView
-//    }()
-//
-//    private let stackViewAndLabelTwo: UIStackView = {
-//        let stackView = UIStackView()
-//        stackView.axis = .horizontal
-//        stackView.alignment = .leading
-//        //stackView.backgroundColor = .brown
-//        stackView.spacing = 5
-//        return stackView
-//    }()
-//
-//    private let stackViewAndLabelThree: UIStackView = {
-//        let stackView = UIStackView()
-//        stackView.axis = .horizontal
-//        stackView.alignment = .leading
-//        //stackView.backgroundColor = .brown
-//        stackView.spacing = 5
-//        stackView.translatesAutoresizingMaskIntoConstraints = false
-//        return stackView
-//    }()
-//
-//    private let stackViewAndLabelFour: UIStackView = {
-//        let stackView = UIStackView()
-//        stackView.axis = .horizontal
-//        stackView.alignment = .leading
-//        //stackView.backgroundColor = .brown
-//        stackView.spacing = 5
-//        stackView.translatesAutoresizingMaskIntoConstraints = false
-//        return stackView
-//    }()
-//
-//    private let stackViewAndLabelFive: UIStackView = {
-//        let stackView = UIStackView()
-//        stackView.axis = .horizontal
-//        stackView.alignment = .leading
-//        //stackView.backgroundColor = .brown
-//        stackView.spacing = 5
-//        stackView.translatesAutoresizingMaskIntoConstraints = false
-//        return stackView
-//    }()
-//
-//    private let stackViewAndLabelSix: UIStackView = {
-//        let stackView = UIStackView()
-//        stackView.axis = .horizontal
-//        stackView.alignment = .leading
-//        //stackView.backgroundColor = .brown
-//        stackView.spacing = 5
-//        stackView.translatesAutoresizingMaskIntoConstraints = false
-//        return stackView
-//    }()
-//
-//    private let stackViewAndLabelSeven: UIStackView = {
-//        let stackView = UIStackView()
-//        stackView.axis = .horizontal
-//        stackView.alignment = .leading
-//        //stackView.backgroundColor = .brown
-//        stackView.spacing = 5
-//        stackView.translatesAutoresizingMaskIntoConstraints = false
-//        return stackView
-//    }()
+    private var playButtonImageView: UIImageView = {
+        let view = UIImageView(image: UIImage(named: "gameStartButtonImage"))
+        view.contentMode = .scaleAspectFill
+        view.frame = CGRect(origin: .zero, size: CGSize(width: 112, height: 27))
+        return view
+    }()
     
     private var contentSize: CGSize {
         CGSize(width: view.frame.width, height: view.frame.height + 1000) //MARK: - change to xMax
@@ -195,37 +94,17 @@ final class RulesViewController: UIViewController {
         labelName: "Первый игрок берет телефон и нажимает кнопку:")
     
     private lazy var labelThree = UILabel(
-        labelName: """
-        На экране появляется вопрос “Назовите Фрукт”.
-""")
+        labelName: "На экране появляется вопрос “Назовите Фрукт”.")
     
     private lazy var labelFour = UILabel(
-        labelName: """
-        Игрок отвечает на вопрос и
-        после правильного ответа
-        передает телефон следующему
-        игроку (правильность ответа
-        определяют другие участники).
-        """)
+        labelName: "Игрок отвечает на вопрос и после правильного ответа передает телефон следующему игроку (правильность ответа определяют другие участники).")
     
     private lazy var labelFive = UILabel(
-        labelName: """
-        "Игроки по кругу отвечают на
-        один и тот же вопрос до тех пор,
-        пока не взорвется бомба.
-""")
+        labelName: "Игроки по кругу отвечают на один и тот же вопрос до тех пор,  пока не взорвется бомба.")
     private lazy var labelSix = UILabel(
-        labelName: """
-        Проигравшим считается тот, в
-        чьих руках взорвалась бомба.
-        """)
+        labelName: "Проигравшим считается тот, в чьих руках взорвалась бомба.")
     private lazy var labelSeven = UILabel(
-        labelName: """
-        Если в настройках выбран
-        режим игры “С Заданиями”, то
-        проигравший выполняет
-        задание.
-        """)
+        labelName: "Если в настройках выбран режим игры “С Заданиями”, то проигравший выполняет  задание.")
 }
 
 extension RulesViewController {
@@ -262,13 +141,21 @@ extension RulesViewController {
     
     private func setupViews() {
         view.addSubview(gradientBackgroundView)
-        view.addSubview(scrollView)
+        gradientBackgroundView.addSubview(scrollView)
         
         scrollView.addSubview(labelTitle)
         scrollView.addSubview(imageViewOne)
         scrollView.addSubview(labelOne)
         scrollView.addSubview(imageViewTwo)
         scrollView.addSubview(labelTwo)
+        scrollView.addSubview(playButtonImageView)
+        scrollView.addSubview(imageViewThree)
+        scrollView.addSubview(labelThree)
+        scrollView.addSubview(imageViewFour)
+        scrollView.addSubview(labelFour)
+        scrollView.addSubview(imageViewFive)
+        scrollView.addSubview(labelFive)
+        
     }
     
     //MARK: - Setup Constraints
@@ -294,13 +181,41 @@ extension RulesViewController {
             make.top.equalTo(imageViewOne).inset(29)
         }
         imageViewTwo.snp.makeConstraints { make in
-            make.leading.equalTo(imageViewOne)
+            make.leading.equalToSuperview().inset(8)
+            //make.leading.equalTo(imageViewOne)
             make.top.equalTo(labelOne.snp.bottom)
         }
         labelTwo.snp.makeConstraints { make in
-            make.leading.equalTo(labelOne)
+            //make.leading.equalTo(labelOne)
+            make.leading.equalTo(imageViewTwo.snp.trailing).inset(16)
             make.trailing.equalTo(view.safeAreaLayoutGuide)
             make.top.equalTo(imageViewTwo).inset(29)
         }
+        playButtonImageView.snp.makeConstraints { make in
+            make.top.equalTo(labelTwo.snp.bottom).inset(8)
+            make.centerX.equalToSuperview()
+        }
+        imageViewThree.snp.makeConstraints { make in
+            make.top.equalTo(playButtonImageView.snp.bottom).inset(29)
+            //make.leading.equalTo(imageViewTwo)
+            //make.leading.equalToSuperview().inset(8)
+            make.leading.equalToSuperview().inset(8)
+            //make.trailing.equalTo(view.safeAreaLayoutGuide)
+        }
+        labelThree.snp.makeConstraints { make in
+            make.leading.equalTo(imageViewTwo.snp.trailing).inset(16)
+            make.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(imageViewThree).inset(29)
+        }
+        //labelThree.sizeToFit()
+//        imageViewFour.snp.makeConstraints { make in
+//            make.leading.equalTo(imageViewOne)
+//            make.top.equalTo(labelThree)
+//        }
+//        labelFour.snp.makeConstraints { make in
+//            make.top.equalTo(imageViewFour).inset(29)
+//            make.leading.equalTo(labelOne)
+//            make.trailing.equalTo(labelTwo)
+//        }
     }
 }
