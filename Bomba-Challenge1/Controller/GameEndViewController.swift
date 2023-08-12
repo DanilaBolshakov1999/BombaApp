@@ -41,7 +41,8 @@ final class GameEndViewController: UIViewController {
     punishment.numberOfLines = 0
     punishment.textColor = UIColor.purpleText
     punishment.textAlignment = .center
-    punishment.font = UIFont.systemFont(ofSize: 25, weight: .bold)
+    punishment.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+    punishment.sizeToFit()
     return punishment
   }()
   

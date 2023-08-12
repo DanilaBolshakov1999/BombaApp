@@ -21,8 +21,8 @@
 		0AF9171F2A83B77D009F958E /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF9171E2A83B77D009F958E /* Category.swift */; };
 		0AF917212A83B7D2009F958E /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF917202A83B7D2009F958E /* GameData.swift */; };
 		44DF34592A850AB200CF1733 /* AnimationGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DF34582A850AB200CF1733 /* AnimationGameViewController.swift */; };
-		52239A512A86C26B00445394 /* taymer-bombyi-tikaet-pered-vzryivom.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 52239A502A86C26B00445394 /* taymer-bombyi-tikaet-pered-vzryivom.mp3 */; };
-		52239A532A86C73500445394 /* tikanie-taimera-1-minuta.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 52239A522A86C73500445394 /* tikanie-taimera-1-minuta.mp3 */; };
+		52239A512A86C26B00445394 /* BOOM.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 52239A502A86C26B00445394 /* BOOM.mp3 */; };
+		52239A532A86C73500445394 /* NOK.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 52239A522A86C73500445394 /* NOK.mp3 */; };
 		5273F5362A8290EC00A285B5 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5273F5352A8290EC00A285B5 /* CategoryViewController.swift */; };
 		5273F5382A82910800A285B5 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5273F5372A82910800A285B5 /* CategoryCell.swift */; };
 		52D10F342A83D36E00FB7D0D /* GameEndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D10F332A83D36E00FB7D0D /* GameEndViewController.swift */; };
@@ -45,8 +45,8 @@
 		0AF9171E2A83B77D009F958E /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		0AF917202A83B7D2009F958E /* GameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
 		44DF34582A850AB200CF1733 /* AnimationGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationGameViewController.swift; sourceTree = "<group>"; };
-		52239A502A86C26B00445394 /* taymer-bombyi-tikaet-pered-vzryivom.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "taymer-bombyi-tikaet-pered-vzryivom.mp3"; sourceTree = "<group>"; };
-		52239A522A86C73500445394 /* tikanie-taimera-1-minuta.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "tikanie-taimera-1-minuta.mp3"; sourceTree = "<group>"; };
+		52239A502A86C26B00445394 /* BOOM.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = BOOM.mp3; sourceTree = "<group>"; };
+		52239A522A86C73500445394 /* NOK.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = NOK.mp3; sourceTree = "<group>"; };
 		5273F5352A8290EC00A285B5 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		5273F5372A82910800A285B5 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		52D10F332A83D36E00FB7D0D /* GameEndViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEndViewController.swift; sourceTree = "<group>"; };
@@ -123,8 +123,8 @@
 				44DF34582A850AB200CF1733 /* AnimationGameViewController.swift */,
 				5273F5352A8290EC00A285B5 /* CategoryViewController.swift */,
 				52D10F332A83D36E00FB7D0D /* GameEndViewController.swift */,
-				52239A522A86C73500445394 /* tikanie-taimera-1-minuta.mp3 */,
-				52239A502A86C26B00445394 /* taymer-bombyi-tikaet-pered-vzryivom.mp3 */,
+				52239A522A86C73500445394 /* NOK.mp3 */,
+				52239A502A86C26B00445394 /* BOOM.mp3 */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -222,9 +222,9 @@
 			files = (
 				0A4864BE2A80E21D0095B234 /* LaunchScreen.storyboard in Resources */,
 				0A8D8BBF2A810B2900C48DAE /* README.md in Resources */,
-				52239A532A86C73500445394 /* tikanie-taimera-1-minuta.mp3 in Resources */,
+				52239A532A86C73500445394 /* NOK.mp3 in Resources */,
 				0ABEAEE62A824FEA00E4F1DD /* Assets.xcassets in Resources */,
-				52239A512A86C26B00445394 /* taymer-bombyi-tikaet-pered-vzryivom.mp3 in Resources */,
+				52239A512A86C26B00445394 /* BOOM.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

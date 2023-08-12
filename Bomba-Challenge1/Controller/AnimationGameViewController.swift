@@ -17,13 +17,13 @@ final class AnimationGameViewController: UIViewController {
   }()
   
   private lazy var questionLabel: UILabel = {
-    let punishment = UILabel()
-    punishment.text = "В следующем раунде после каждого ответа хлопать в ладоши"
-    punishment.numberOfLines = 0
-    punishment.textColor = UIColor.purpleText
-    punishment.textAlignment = .center
-    punishment.font = UIFont.systemFont(ofSize: 25, weight: .bold)
-    return punishment
+    let questionLabel = UILabel()
+    questionLabel.text = "В следующем раунде после каждого ответа хлопать в ладоши"
+    questionLabel.numberOfLines = 0
+    questionLabel.textColor = UIColor.purpleText
+    questionLabel.textAlignment = .center
+    questionLabel.font = UIFont.systemFont(ofSize: 25, weight: .bold)
+    return questionLabel
   }()
   
   private lazy var animationImage: UIImageView = {
@@ -38,7 +38,7 @@ final class AnimationGameViewController: UIViewController {
   private var player: AVAudioPlayer?
   
   private var timer: Timer?
-  private var timeLeft = 15
+  private var timeLeft = 5
   
   // MARK: - Override Methods
   override func viewDidLoad() {
@@ -50,12 +50,11 @@ final class AnimationGameViewController: UIViewController {
   // Action Methods
   @objc
   private func addTappedBack() {
-    if ((timer?.isValid) != nil) {
+    if timer?.isValid ?? false {
       print("wow")
     } else {
       navigationController?.popViewController(animated: true)
     }
-    
   }
   
   @objc
@@ -76,15 +75,20 @@ final class AnimationGameViewController: UIViewController {
     timeLeft -= 1
     print(timeLeft)
     
+    if timeLeft == 1 {
+      animationImage.animationImages = animatedImages(for: "Unknown-4-")
+      animationImage.startAnimating()
+      configurePlayer(urlName: "BOOM")
+    }
+    
     if timeLeft <= 0 {
       timer?.invalidate()
-      timer = nil
-      player?.stop()
-      
-      configurePlayer(urlName: "taymer-bombyi-tikaet-pered-vzryivom")
-      
-      let gameEndViewController = GameEndViewController()
-      navigationController?.pushViewController(gameEndViewController, animated: true)
+     
+      DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        self.player?.stop()
+        let gameEndViewController = GameEndViewController()
+        self.navigationController?.pushViewController(gameEndViewController, animated: true)
+      }
     }
   }
 }
@@ -98,7 +102,7 @@ private extension AnimationGameViewController {
     configureNavController()
     randomTimer()
     configureTimer()
-    configurePlayer(urlName: "tikanie-taimera-1-minuta")
+    configurePlayer(urlName: "NOK")
   }
   
 }
