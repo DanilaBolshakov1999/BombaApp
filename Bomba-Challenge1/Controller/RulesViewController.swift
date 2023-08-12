@@ -87,14 +87,16 @@ final class RulesViewController: UIViewController {
     private let imageViewSix = UIImageView(imageName: "numberSix")
     private let imageViewSeven = UIImageView(imageName: "numberSeven")
     
-    private let labelOne = UILabel(
-        labelName: "Все игроки становятся в круг.")
+    private let labelOne = UILabel.label(with: "Все игроки становятся в круг.")
+//    (
+//        labelName: "Все игроки становятся в круг.")
     
-    private lazy var labelTwo = UILabel(
-        labelName: "Первый игрок берет телефон и нажимает кнопку:")
+    private let labelTwo = UILabel.label(with: "Первый игрок берет телефон и нажимает кнопку:")
+//    UILabel(
+//        labelName: "Первый игрок берет телефон и нажимает кнопку:")
     
-    private lazy var labelThree = UILabel(
-        labelName: "На экране появляется вопрос “Назовите Фрукт”.")
+    private lazy var labelThree = UILabel.label(with: "На экране появляется вопрос “Назовите Фрукт”.")
+        //labelName: "На экране появляется вопрос “Назовите Фрукт”.")
     
     private lazy var labelFour = UILabel(
         labelName: "Игрок отвечает на вопрос и после правильного ответа передает телефон следующему игроку (правильность ответа определяют другие участники).")
@@ -196,16 +198,17 @@ extension RulesViewController {
             make.centerX.equalToSuperview()
         }
         imageViewThree.snp.makeConstraints { make in
-            make.top.equalTo(playButtonImageView.snp.bottom).inset(29)
+            make.top.equalTo(playButtonImageView.snp.bottom).inset(39)
             //make.leading.equalTo(imageViewTwo)
             //make.leading.equalToSuperview().inset(8)
             make.leading.equalToSuperview().inset(8)
             //make.trailing.equalTo(view.safeAreaLayoutGuide)
         }
         labelThree.snp.makeConstraints { make in
-            make.leading.equalTo(imageViewTwo.snp.trailing).inset(16)
-            make.trailing.equalTo(view.safeAreaLayoutGuide)
+            //make.leading.equalTo(imageViewThree.snp.trailing).inset(16)
+            make.trailing.equalTo(view.snp.trailing)
             make.top.equalTo(imageViewThree).inset(29)
+            make.leading.equalTo(imageViewOne.snp.trailing).inset(16)
         }
         //labelThree.sizeToFit()
 //        imageViewFour.snp.makeConstraints { make in

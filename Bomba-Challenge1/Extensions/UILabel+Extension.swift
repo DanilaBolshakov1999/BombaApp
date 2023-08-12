@@ -8,6 +8,15 @@
 import UIKit
 
 extension UILabel {
+    static func label(with name: String) -> UILabel {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.numberOfLines = 0
+        label.text = name
+        label.font = .boldSystemFont(ofSize: 15)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }
     convenience init(labelName: String) {
         self.init()
         self.font = .boldSystemFont(ofSize: 15)
