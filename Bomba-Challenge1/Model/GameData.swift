@@ -15,6 +15,9 @@ class GameData {
   var choiceQusetions = [String]()
   let punishments: [String]
   
+  var stopTime: Int?
+  var stopQuestion: String?
+
   private init() {
     let generalCategory = Category(name: "О разном",
                                    imageName: "category1",
@@ -148,6 +151,16 @@ class GameData {
       }
     }
     choiceQusetions = array
+  }
+  
+  func getRandomQuestion() -> String {
+    let randomQuestion = choiceQusetions.randomElement()
+    for (index, question) in choiceQusetions.enumerated() {
+      if randomQuestion == question {
+       choiceQusetions.remove(at: index)
+      }
+    }
+    return randomQuestion ?? ""
   }
 }
 
