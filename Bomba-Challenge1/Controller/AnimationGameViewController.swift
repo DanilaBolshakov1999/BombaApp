@@ -6,138 +6,196 @@
 //
 
 import UIKit
+import AVFoundation
 
 final class AnimationGameViewController: UIViewController {
-    
-    //MARK: - UI
-    
-    private lazy var gradientLayer: CAGradientLayer = {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [UIColor.yellow.cgColor, UIColor.orange.cgColor]
-        gradientLayer.startPoint = CGPoint(x: 0, y: 0.5)
-        gradientLayer.endPoint = CGPoint(x: 0, y: 1)
-        gradientLayer.cornerRadius = 20
-        return gradientLayer
-    }()
-    
-    private lazy var mainBackgroundView: UIView = {
-        let view = UIView()
-        view.layer.cornerRadius = 20
-        view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowRadius = 10
-        view.layer.shadowOffset = CGSize.zero
-        view.layer.shadowOpacity = 1
-        view.layer.addSublayer(gradientLayer)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private lazy var mainStackView: UIStackView = {
-        let element = UIStackView()
-        element.axis = .vertical
-        element.spacing = 5
-        element.alignment = .center
-        element.distribution = .fillProportionally
-        element.translatesAutoresizingMaskIntoConstraints = false
-        return element
-    }()
-    
-    private lazy var mainLabelView: UILabel = {
-        let label = UILabel()
-        label.text = "Вопрос"
-        label.numberOfLines = 0
-        label.textColor = UIColor.purpleText
-        label.textAlignment = .center
-        label.layer.borderColor = UIColor.black.cgColor
-        label.font = .boldSystemFont(ofSize: 40)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    private lazy var backgroundGame: UIImageView = {
-        let background = UIImageView()
-        background.image = UIImage(named: "bombGame")
-        background.contentMode = .scaleAspectFit
-        background.translatesAutoresizingMaskIntoConstraints = false
-        return background
-    }()
-    
-    //MARK: - Life Cycle
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        gradientLayer.frame = mainBackgroundView.bounds
+  
+  // MARK: - Private Property
+  private lazy var backgroundView: GradientView = {
+    let gradientView = GradientView(frame: .zero)
+    return gradientView
+  }()
+  
+  private lazy var questionLabel: UILabel = {
+    let punishment = UILabel()
+    punishment.text = "В следующем раунде после каждого ответа хлопать в ладоши"
+    punishment.numberOfLines = 0
+    punishment.textColor = UIColor.purpleText
+    punishment.textAlignment = .center
+    punishment.font = UIFont.systemFont(ofSize: 25, weight: .bold)
+    return punishment
+  }()
+  
+  private lazy var animationImage: UIImageView = {
+    let animationImage = UIImageView()
+    animationImage.animationImages = animatedImages(for: "Unknown-")
+    animationImage.contentMode = .scaleAspectFill
+    animationImage.animationDuration = 1.5
+    animationImage.image = animationImage.animationImages?.first
+    return animationImage
+  }()
+  
+  private var player: AVAudioPlayer?
+  
+  private var timer: Timer?
+  private var timeLeft = 15
+  
+  // MARK: - Override Methods
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    setupView()
+    animationImage.startAnimating()
+  }
+  
+  // Action Methods
+  @objc
+  private func addTappedBack() {
+    if ((timer?.isValid) != nil) {
+      print("wow")
+    } else {
+      navigationController?.popViewController(animated: true)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setViews()
-        configureNavController()
-        setupConstrains()
+  }
+  
+  @objc
+  private func addTappedPause() {
+    if (timer?.isValid ?? false) {
+      timer?.invalidate()
+      player?.stop()
+      animationImage.stopAnimating()
+    } else {
+      configureTimer()
+      player?.play()
+      animationImage.startAnimating()
     }
+  }
+  
+  @objc
+  private func onTimerFires() {
+    timeLeft -= 1
+    print(timeLeft)
     
-    private func configureNavController() {
-        title = "Игра"
-        let appearance = UINavigationBarAppearance()
-        appearance.titleTextAttributes = [
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 25, weight: .bold),
-            NSAttributedString.Key.foregroundColor: UIColor(named: "purpleText") ?? .white
-        ]
-        
-        let leftBarButtonItem = UIBarButtonItem(
-            image: UIImage(named: "arrow"),
-            style: .done, target: self,
-            action: #selector(addTappedBack)
-        )
-        
-        let rightBarButtonItem = UIBarButtonItem(
-            image: UIImage(named: "pause"),
-            style: .done, target: self,
-            action: #selector(addTappedPause)
-        )
-        
-        leftBarButtonItem.tintColor = .black
-        rightBarButtonItem.tintColor = .black
-        navigationItem.leftBarButtonItem = leftBarButtonItem
-        navigationItem.rightBarButtonItem = rightBarButtonItem
-        navigationController?.navigationBar.standardAppearance = appearance
+    if timeLeft <= 0 {
+      timer?.invalidate()
+      timer = nil
+      player?.stop()
+      
+      configurePlayer(urlName: "taymer-bombyi-tikaet-pered-vzryivom")
+      
+      let gameEndViewController = GameEndViewController()
+      navigationController?.pushViewController(gameEndViewController, animated: true)
     }
-    
-    @objc private func addTappedBack() {
-        navigationController?.popViewController(animated: true)
-    }
-    
-    @objc private func addTappedPause() {
-        navigationController?.pushViewController(GameEndViewController(), animated: true)
-    }
+  }
 }
 
-extension AnimationGameViewController {
+// MARK: - Setting Views
+private extension AnimationGameViewController {
+  func setupView() {
+    view.backgroundColor = .white
+    addSubviews()
+    setupLayout()
+    configureNavController()
+    randomTimer()
+    configureTimer()
+    configurePlayer(urlName: "tikanie-taimera-1-minuta")
+  }
+  
+}
+
+// MARK: - Setting
+private extension AnimationGameViewController {
+  func addSubviews() {
+    view.addSubview(backgroundView)
+    view.addSubview(questionLabel)
+    view.addSubview(animationImage)
+  }
+  
+  func configureNavController() {
+    title = "Игра"
+    let appearance = UINavigationBarAppearance()
+    appearance.titleTextAttributes = [
+      NSAttributedString.Key.font: UIFont.systemFont(ofSize: 25, weight: .bold),
+      NSAttributedString.Key.foregroundColor: UIColor(named: "purpleText") ?? .white
+    ]
     
-    //MARK: - Setup Views
+    let leftBarButtonItem = UIBarButtonItem(
+      image: UIImage(named: "arrow"),
+      style: .done, target: self,
+      action: #selector(addTappedBack)
+    )
     
-    private func setViews() {
-        view.addSubview(mainBackgroundView)
-        view.addSubview(mainStackView)
-        mainStackView.addArrangedSubview(mainLabelView)
-        mainStackView.addArrangedSubview(backgroundGame)
+    let rightBarButtonItem = UIBarButtonItem(
+      image: UIImage(named: "pause"),
+      style: .done, target: self,
+      action: #selector(addTappedPause)
+    )
+    
+    leftBarButtonItem.tintColor = .black
+    rightBarButtonItem.tintColor = .black
+    navigationItem.leftBarButtonItem = leftBarButtonItem
+    navigationItem.rightBarButtonItem = rightBarButtonItem
+    navigationController?.navigationBar.standardAppearance = appearance
+  }
+  
+  func animatedImages(for name: String) -> [UIImage] {
+    var i = 0
+    var images = [UIImage]()
+    
+    while let image = UIImage(named: "\(name)\(i)") {
+      images.append(image)
+      i += 1
     }
+    return images
+  }
+  
+  func randomTimer() {
+    let random = Int.random(in: 1...15)
+    timeLeft += random
+  }
+  
+  func configureTimer() {
+    timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(onTimerFires), userInfo: nil, repeats: true)
+  }
+  
+  func configurePlayer(urlName: String) {
+    guard let url = Bundle.main.url(forResource: urlName, withExtension: "mp3") else { return }
     
-    //MARK: - Setup Constraints
-    
-    private func setupConstrains() {
-        NSLayoutConstraint.activate([
-            mainBackgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            mainBackgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            mainBackgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            mainBackgroundView.topAnchor.constraint(equalTo: view.topAnchor),
-            
-            mainStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            mainStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
-        ])
+    do {
+      try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+      try AVAudioSession.sharedInstance().setActive(true)
+      
+      player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+      guard let player = player else { return }
+      player.play()
+      
+    } catch let error {
+      print(error.localizedDescription)
     }
+  }
+}
+
+private extension AnimationGameViewController {
+  func setupLayout() {
+    backgroundView.translatesAutoresizingMaskIntoConstraints = false
+    questionLabel.translatesAutoresizingMaskIntoConstraints = false
+    animationImage.translatesAutoresizingMaskIntoConstraints = false
+    
+    NSLayoutConstraint.activate([
+      backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+      backgroundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+      backgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+      backgroundView.topAnchor.constraint(equalTo: view.topAnchor),
+      
+      questionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+      questionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+      questionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+      
+      animationImage.topAnchor.constraint(equalTo: questionLabel.bottomAnchor, constant: 150),
+      animationImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+      animationImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+    ])
+  }
 }
 
 

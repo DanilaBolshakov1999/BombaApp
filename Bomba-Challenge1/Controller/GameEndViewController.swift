@@ -68,6 +68,7 @@ final class GameEndViewController: UIViewController {
   
   @objc
   func startOverTap() {
+    print(print("wow"))
     navigationController?.popToRootViewController(animated: true)
   }
 }
