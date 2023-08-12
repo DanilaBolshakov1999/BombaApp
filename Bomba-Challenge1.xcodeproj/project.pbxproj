@@ -124,8 +124,6 @@
 				44DF34582A850AB200CF1733 /* AnimationGameViewController.swift */,
 				5273F5352A8290EC00A285B5 /* CategoryViewController.swift */,
 				52D10F332A83D36E00FB7D0D /* GameEndViewController.swift */,
-				52239A522A86C73500445394 /* NOK.mp3 */,
-				52239A502A86C26B00445394 /* BOOM.mp3 */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -152,11 +150,21 @@
 		0A8D8BBB2A80FDD700C48DAE /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				0ABC0DDD2A88353000251B34 /* Tracks */,
 				0A4864BF2A80E21D0095B234 /* Info.plist */,
 				0ABEAEE52A824FEA00E4F1DD /* Assets.xcassets */,
 				0A4864BC2A80E21D0095B234 /* LaunchScreen.storyboard */,
 			);
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		0ABC0DDD2A88353000251B34 /* Tracks */ = {
+			isa = PBXGroup;
+			children = (
+				52239A522A86C73500445394 /* NOK.mp3 */,
+				52239A502A86C26B00445394 /* BOOM.mp3 */,
+			);
+			path = Tracks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
