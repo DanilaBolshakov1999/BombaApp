@@ -8,9 +8,11 @@
 import UIKit
 
 extension UIImageView  {
-    convenience init(imageName: String) {
-        self.init(frame: CGRect(origin: .zero, size: CGSize(width: 29, height: 29)))
-        self.image = UIImage(named: imageName)
-        self.contentMode = .scaleAspectFill
+    
+    static func view29x29(imageName: String) -> UIImageView {
+        let view = UIImageView(frame: CGRect(origin: .zero, size: CGSize(width: 29, height: 29)))
+        view.image = UIImage(named: imageName)
+        view.contentMode = .scaleAspectFit
+        return view
     }
 }

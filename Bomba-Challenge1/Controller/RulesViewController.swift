@@ -36,7 +36,6 @@ final class RulesViewController: UIViewController {
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.frame = view.bounds
-        //scrollView.contentSize = contentSize
         return scrollView
     }()
     
@@ -52,16 +51,12 @@ final class RulesViewController: UIViewController {
         return view
     }()
     
-//    private var contentSize: CGSize {
-//        CGSize(width: view.frame.width, height: view.frame.height + 1000) //MARK: - change to xMax
-//    }
-    
     //MARK: - Life Cycle
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         gradientLayer.frame = gradientBackgroundView.bounds
-        scrollView.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height + 300)
+        scrollView.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height + 500)
     }
     
     override func viewDidLoad() {
@@ -74,13 +69,17 @@ final class RulesViewController: UIViewController {
     
     //MARK: - Private Properties
     
-    private let imageViewOne = UIImageView(imageName: "numberOne")
-    private let imageViewTwo = UIImageView(imageName: "numberTwo")
-    private let imageViewThree = UIImageView(imageName: "numberThree")
-    private let imageViewFour = UIImageView(imageName: "numberFour")
-    private let imageViewFive = UIImageView(imageName: "numberFive")
-    private let imageViewSix = UIImageView(imageName: "numberSix")
-    private let imageViewSeven = UIImageView(imageName: "numberSeven")
+    private let imageViewOne = UIImageView.view29x29(imageName: "numberOne")
+    private let imageViewTwo = UIImageView.view29x29(imageName: "numberTwo")
+    private let imageViewThree = UIImageView.view29x29(imageName: "numberThree")
+    private let imageViewFour = UIImageView.view29x29(imageName: "numberFour")
+    private let imageViewFive = UIImageView.view29x29(imageName: "numberFive")
+    private let imageViewSix = UIImageView.view29x29(imageName: "numberSix")
+    private let imageViewSeven = UIImageView.view29x29(imageName: "numberSeven")
+    private let imageViewCategory1 = UIImageView(image: UIImage(named: "otherCategory"))
+    private let imageViewCategory2 = UIImageView(image: UIImage(named: "movieCategory"))
+    private let imageViewCategory3 = UIImageView(image: UIImage(named: "natureCategory"))
+    private let imageViewCategory4 = UIImageView(image: UIImage(named: "sportCategory"))
     
     private let labelOne = UILabel.label(with: "Все игроки становятся в круг.")
     private let labelTwo = UILabel.label(with: "Первый игрок берет телефон и нажимает кнопку:")
@@ -147,6 +146,10 @@ extension RulesViewController {
         scrollView.addSubview(categoryLabel)
         scrollView.addSubview(label8)
         scrollView.addSubview(label9)
+        scrollView.addSubview(imageViewCategory1)
+        scrollView.addSubview(imageViewCategory2)
+        scrollView.addSubview(imageViewCategory3)
+        scrollView.addSubview(imageViewCategory4)
         
     }
     
@@ -171,7 +174,7 @@ extension RulesViewController {
         labelOne.snp.makeConstraints { make in
             make.leading.equalTo(imageViewOne.snp.trailing).inset(16)
             make.top.equalTo(imageViewOne).inset(29)
-           // make.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
+            // make.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
         }
         imageViewTwo.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(8)
@@ -244,6 +247,28 @@ extension RulesViewController {
         label9.snp.makeConstraints { make in
             make.top.equalTo(label8.snp.bottom).inset(-40)
             make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
+        }
+        imageViewCategory1.snp.makeConstraints { make in
+            make.top.equalTo(label9.snp.bottom).inset(-40)
+            make.leading.equalToSuperview().inset(8)
+            make.height.width.equalTo(imageViewCategory1.snp.width)
+        }
+        imageViewCategory2.snp.makeConstraints { make in
+            make.top.equalTo(imageViewCategory1)
+            make.leading.equalTo(imageViewCategory1.snp.trailing).inset(16)
+            make.trailing.equalToSuperview().inset(16)
+            make.height.equalTo(imageViewCategory2.snp.width)
+        }
+        imageViewCategory3.snp.makeConstraints { make in
+            make.top.equalTo(imageViewCategory1.snp.bottom).inset(16)
+            make.leading.equalToSuperview().inset(8)
+            make.height.equalTo(imageViewCategory3.snp.width)
+        }
+        imageViewCategory4.snp.makeConstraints { make in
+            make.top.equalTo(imageViewCategory3)
+            make.leading.equalTo(imageViewCategory3.snp.trailing).inset(16)
+            make.trailing.equalToSuperview().inset(16)
+            make.height.equalTo(imageViewCategory4.snp.width)
         }
     }
 }
