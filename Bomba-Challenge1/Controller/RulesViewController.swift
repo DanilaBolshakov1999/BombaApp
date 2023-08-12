@@ -199,26 +199,21 @@ extension RulesViewController {
         }
         imageViewThree.snp.makeConstraints { make in
             make.top.equalTo(playButtonImageView.snp.bottom).inset(39)
-            //make.leading.equalTo(imageViewTwo)
-            //make.leading.equalToSuperview().inset(8)
             make.leading.equalToSuperview().inset(8)
-            //make.trailing.equalTo(view.safeAreaLayoutGuide)
         }
         labelThree.snp.makeConstraints { make in
-            //make.leading.equalTo(imageViewThree.snp.trailing).inset(16)
-            make.trailing.equalTo(view.snp.trailing)
+            make.trailing.equalTo(view.safeAreaLayoutGuide)
             make.top.equalTo(imageViewThree).inset(29)
             make.leading.equalTo(imageViewOne.snp.trailing).inset(16)
         }
-        //labelThree.sizeToFit()
-//        imageViewFour.snp.makeConstraints { make in
-//            make.leading.equalTo(imageViewOne)
-//            make.top.equalTo(labelThree)
-//        }
-//        labelFour.snp.makeConstraints { make in
-//            make.top.equalTo(imageViewFour).inset(29)
-//            make.leading.equalTo(labelOne)
-//            make.trailing.equalTo(labelTwo)
-//        }
+        imageViewFour.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(8)
+            make.top.equalTo(labelThree.snp.bottom)
+        }
+        labelFour.snp.makeConstraints { make in
+            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(8)
+            make.top.equalTo(imageViewFour).inset(29)
+            make.leading.equalTo(imageViewFour.snp.trailing).inset(16)
+        }
     }
 }
