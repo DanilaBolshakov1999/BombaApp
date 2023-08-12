@@ -157,6 +157,10 @@ extension RulesViewController {
         scrollView.addSubview(labelFour)
         scrollView.addSubview(imageViewFive)
         scrollView.addSubview(labelFive)
+        scrollView.addSubview(imageViewSix)
+        scrollView.addSubview(labelSix)
+        scrollView.addSubview(imageViewSeven)
+        scrollView.addSubview(labelSeven)
         
     }
     
@@ -181,6 +185,7 @@ extension RulesViewController {
         labelOne.snp.makeConstraints { make in
             make.leading.equalTo(imageViewOne.snp.trailing).inset(16)
             make.top.equalTo(imageViewOne).inset(29)
+           // make.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
         }
         imageViewTwo.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(8)
@@ -190,7 +195,7 @@ extension RulesViewController {
         labelTwo.snp.makeConstraints { make in
             //make.leading.equalTo(labelOne)
             make.leading.equalTo(imageViewTwo.snp.trailing).inset(16)
-            make.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
             make.top.equalTo(imageViewTwo).inset(29)
         }
         playButtonImageView.snp.makeConstraints { make in
@@ -202,7 +207,7 @@ extension RulesViewController {
             make.leading.equalToSuperview().inset(8)
         }
         labelThree.snp.makeConstraints { make in
-            make.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
             make.top.equalTo(imageViewThree).inset(29)
             make.leading.equalTo(imageViewOne.snp.trailing).inset(16)
         }
@@ -211,9 +216,36 @@ extension RulesViewController {
             make.top.equalTo(labelThree.snp.bottom)
         }
         labelFour.snp.makeConstraints { make in
-            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(8)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
             make.top.equalTo(imageViewFour).inset(29)
             make.leading.equalTo(imageViewFour.snp.trailing).inset(16)
+        }
+        imageViewFive.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(8)
+            make.top.equalTo(labelFour.snp.bottom)
+        }
+        labelFive.snp.makeConstraints { make in
+            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
+            make.top.equalTo(imageViewFive).inset(29)
+            make.leading.equalTo(imageViewFive.snp.trailing).inset(16)
+        }
+        imageViewSix.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(8)
+            make.top.equalTo(labelFive.snp.bottom)
+        }
+        labelSix.snp.makeConstraints { make in
+            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
+            make.top.equalTo(imageViewSix).inset(29)
+            make.leading.equalTo(imageViewSix.snp.trailing).inset(16)
+        }
+        imageViewSeven.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(8)
+            make.top.equalTo(labelSix.snp.bottom)
+        }
+        labelSeven.snp.makeConstraints { make in
+            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
+            make.top.equalTo(imageViewSeven).inset(29)
+            make.leading.equalTo(imageViewSeven.snp.trailing).inset(16)
         }
     }
 }
