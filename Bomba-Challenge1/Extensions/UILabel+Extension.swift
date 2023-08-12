@@ -17,12 +17,15 @@ extension UILabel {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }
-    convenience init(labelName: String) {
-        self.init()
-        self.font = .boldSystemFont(ofSize: 15)
-        self.text = labelName
-        self.numberOfLines = 0
-        self.textAlignment = .left
-        //self.translatesAutoresizingMaskIntoConstraints = false
+    
+    static  func labelTitle(with name: String)-> UILabel {
+        let label = UILabel()
+        label.text = name
+        label.numberOfLines = 0
+        label.textColor = UIColor.purpleText
+        label.textAlignment = .center
+        label.font = .boldSystemFont(ofSize: 40)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }
 }

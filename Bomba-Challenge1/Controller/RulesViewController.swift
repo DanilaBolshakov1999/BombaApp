@@ -40,17 +40,9 @@ final class RulesViewController: UIViewController {
         return scrollView
     }()
     
-    private lazy var labelTitle: UILabel = { //???
-        let label = UILabel()
-        label.text = "Правила Игры"
-        label.numberOfLines = 0
-        label.textColor = UIColor.purpleText
-        label.textAlignment = .center
-        //label.layer.borderColor = UIColor.black.cgColor
-        label.font = .boldSystemFont(ofSize: 40)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    private let labelTitle = UILabel.labelTitle(with: "Правила Игры")
+    private let categoryLabel = UILabel.labelTitle(with: "Категории")
+
     private var playButtonImageView: UIImageView = {
         let view = UIImageView(image: UIImage(named: "gameStartButtonImage"))
         view.contentMode = .scaleAspectFill
@@ -88,25 +80,13 @@ final class RulesViewController: UIViewController {
     private let imageViewSeven = UIImageView(imageName: "numberSeven")
     
     private let labelOne = UILabel.label(with: "Все игроки становятся в круг.")
-//    (
-//        labelName: "Все игроки становятся в круг.")
-    
     private let labelTwo = UILabel.label(with: "Первый игрок берет телефон и нажимает кнопку:")
-//    UILabel(
-//        labelName: "Первый игрок берет телефон и нажимает кнопку:")
+    private let labelThree = UILabel.label(with: "На экране появляется вопрос “Назовите Фрукт”.")
+    private let labelFour = UILabel.label(with: "Игрок отвечает на вопрос и после правильного ответа передает телефон следующему игроку (правильность ответа определяют другие участники).")
+    private let labelFive = UILabel.label(with: "Игроки по кругу отвечают на один и тот же вопрос до тех пор,  пока не взорвется бомба.")
+    private let labelSix = UILabel.label(with: "Проигравшим считается тот, в чьих руках взорвалась бомба.")
+    private let labelSeven = UILabel.label(with: "Если в настройках выбран режим игры “С Заданиями”, то проигравший выполняет  задание.")
     
-    private lazy var labelThree = UILabel.label(with: "На экране появляется вопрос “Назовите Фрукт”.")
-        //labelName: "На экране появляется вопрос “Назовите Фрукт”.")
-    
-    private lazy var labelFour = UILabel(
-        labelName: "Игрок отвечает на вопрос и после правильного ответа передает телефон следующему игроку (правильность ответа определяют другие участники).")
-    
-    private lazy var labelFive = UILabel(
-        labelName: "Игроки по кругу отвечают на один и тот же вопрос до тех пор,  пока не взорвется бомба.")
-    private lazy var labelSix = UILabel(
-        labelName: "Проигравшим считается тот, в чьих руках взорвалась бомба.")
-    private lazy var labelSeven = UILabel(
-        labelName: "Если в настройках выбран режим игры “С Заданиями”, то проигравший выполняет  задание.")
 }
 
 extension RulesViewController {
@@ -161,6 +141,7 @@ extension RulesViewController {
         scrollView.addSubview(labelSix)
         scrollView.addSubview(imageViewSeven)
         scrollView.addSubview(labelSeven)
+        scrollView.addSubview(categoryLabel)
         
     }
     
@@ -246,6 +227,10 @@ extension RulesViewController {
             make.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
             make.top.equalTo(imageViewSeven).inset(29)
             make.leading.equalTo(imageViewSeven.snp.trailing).inset(16)
+        }
+        categoryLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(imageViewSeven.snp.bottom).inset(-40)
         }
     }
 }
