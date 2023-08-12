@@ -79,7 +79,6 @@ private extension CategoryViewController {
     leftBarButtonItem.tintColor = .black
     navigationItem.leftBarButtonItem = leftBarButtonItem
   }
-  
 }
 
 // MARK: - Layout

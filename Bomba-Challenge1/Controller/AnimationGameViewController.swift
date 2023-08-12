@@ -10,6 +10,8 @@ import AVFoundation
 
 final class AnimationGameViewController: UIViewController {
   
+  let gameData = GameData.shared
+  
   // MARK: - Private Property
   private lazy var backgroundView: GradientView = {
     let gradientView = GradientView(frame: .zero)
@@ -18,7 +20,7 @@ final class AnimationGameViewController: UIViewController {
   
   private lazy var questionLabel: UILabel = {
     let questionLabel = UILabel()
-    questionLabel.text = "В следующем раунде после каждого ответа хлопать в ладоши"
+    questionLabel.text = ""
     questionLabel.numberOfLines = 0
     questionLabel.textColor = UIColor.purpleText
     questionLabel.textAlignment = .center
@@ -38,22 +40,24 @@ final class AnimationGameViewController: UIViewController {
   private var player: AVAudioPlayer?
   
   private var timer: Timer?
-  private var timeLeft = 5
+  private var timeLeft = 15
+  private var randomQuestion = ""
   
   // MARK: - Override Methods
   override func viewDidLoad() {
     super.viewDidLoad()
     setupView()
     animationImage.startAnimating()
+    
   }
   
   // Action Methods
   @objc
   private func addTappedBack() {
     if timer?.isValid ?? false {
-      print("wow")
+      
     } else {
-      navigationController?.popViewController(animated: true)
+      navigationController?.popToRootViewController(animated: true)
     }
   }
   
@@ -63,6 +67,8 @@ final class AnimationGameViewController: UIViewController {
       timer?.invalidate()
       player?.stop()
       animationImage.stopAnimating()
+      gameData.stopTime = timeLeft
+      gameData.stopQuestion = randomQuestion
     } else {
       configureTimer()
       player?.play()
@@ -101,8 +107,20 @@ private extension AnimationGameViewController {
     setupLayout()
     configureNavController()
     randomTimer()
-    configureTimer()
+//    configureTimer()
     configurePlayer(urlName: "NOK")
+    
+    if let stopTime = gameData.stopTime, let stopQuestion = gameData.stopQuestion {
+      timeLeft = stopTime
+      questionLabel.text = stopQuestion
+      animationImage.startAnimating()
+      configureTimer()
+      print("www")
+    } else {
+      configureTimer()
+      getRandomQuestion()
+      print("qqq")
+    }
   }
   
 }
@@ -176,6 +194,12 @@ private extension AnimationGameViewController {
     } catch let error {
       print(error.localizedDescription)
     }
+  }
+  
+  func getRandomQuestion() {
+    randomQuestion = gameData.getRandomQuestion()
+    questionLabel.text = randomQuestion
+    print(gameData.choiceQusetions)
   }
 }
 

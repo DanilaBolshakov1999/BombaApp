@@ -12,7 +12,7 @@ import UIKit
 final class GameEndViewController: UIViewController {
   
   // MARK: - panishments Model
-  let panishments = GameData.shared.punishments
+  let panishments = GameData.shared
   
   // MARK: - Private Property
   private lazy var backgroundView: GradientView = {
@@ -63,13 +63,12 @@ final class GameEndViewController: UIViewController {
   
   @objc
   func otherTaskTap() {
-    let randomPunishpment = panishments.randomElement()
+    let randomPunishpment = panishments.punishments.randomElement()
     punishmentLabel.text = randomPunishpment
   }
   
   @objc
   func startOverTap() {
-    print(print("wow"))
     navigationController?.popToRootViewController(animated: true)
   }
 }
@@ -81,6 +80,7 @@ private extension GameEndViewController {
     setupLayout()
     configureNavController()
     addAction()
+    randomPanishment()
   }
 }
 
@@ -93,7 +93,6 @@ private extension GameEndViewController {
     view.addSubview(punishmentLabel)
     view.addSubview(otherTaskButton)
     view.addSubview(startOverButton)
-    
   }
   
   func configureNavController() {
@@ -122,6 +121,12 @@ private extension GameEndViewController {
     otherTask.backgroundColor = UIColor.purpleButton
     return otherTask
   }
+  
+  func randomPanishment() {
+    let randomPanishment = panishments.punishments.randomElement()
+    punishmentLabel.text = randomPanishment
+  }
+  
   
   func addAction() {
     otherTaskButton.addTarget(self, action: #selector(otherTaskTap), for: .touchUpInside)
