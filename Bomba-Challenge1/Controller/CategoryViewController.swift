@@ -53,7 +53,7 @@ final class CategoryViewController: UIViewController {
     
     // MARK: - Actions Methods
     @objc
-    func addTapped() {
+    func backButtonTapped() {
         navigationController?.popViewController(animated: true)
     }
     
@@ -62,7 +62,6 @@ final class CategoryViewController: UIViewController {
 // MARK: - Setting Views
 private extension CategoryViewController {
     func setupView() {
-        view.backgroundColor = .white
         addSubviews()
         setupLayout()
         configureCollectionView()
@@ -92,7 +91,7 @@ private extension CategoryViewController {
         appearance.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 25, weight: .bold),
                                           NSAttributedString.Key.foregroundColor: UIColor(named: "purpleText") ?? .white]
         navigationController?.navigationBar.standardAppearance = appearance
-        let leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .done, target: self, action: #selector(addTapped))
+        let leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .done, target: self, action: #selector(backButtonTapped))
         leftBarButtonItem.tintColor = .black
         navigationItem.leftBarButtonItem = leftBarButtonItem
     }
@@ -122,7 +121,7 @@ private extension CategoryViewController {
 extension CategoryViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return gameData.categories.count
+        gameData.categories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -132,7 +131,7 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         let category = gameData.categories[indexPath.row]
         cell.imageView.image = UIImage(named: category.imageName)
         cell.nameCategory.text = category.name
-      
+        cell.selectCell = category.isSelected
         
         return cell
     }

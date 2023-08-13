@@ -107,7 +107,7 @@ extension RulesViewController {
         let leftBarButtonItem = UIBarButtonItem(
             image: UIImage(named: "arrow"),
             style: .done, target: self,
-            action: #selector(addTappedBack)
+            action: #selector(backButtonPressed)
         )
         
         leftBarButtonItem.tintColor = .black
@@ -117,7 +117,7 @@ extension RulesViewController {
         navigationController?.navigationBar.standardAppearance = appearance
     }
     
-    @objc private func addTappedBack() {
+    @objc private func backButtonPressed() {
         navigationController?.popViewController(animated: true)
     }
     

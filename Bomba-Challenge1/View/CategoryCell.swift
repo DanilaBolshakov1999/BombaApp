@@ -32,7 +32,7 @@ class CategoryCell: UICollectionViewCell {
   
   lazy var checkmark: UIImageView = {
     let checkmark = UIImageView()
-    checkmark.image = UIImage(named: "checkmarkOff")
+      checkmark.image = (self.selectCell) ? UIImage(named: "checkmarkOn") : UIImage(named: "checkmarkOff")
     return checkmark
   }()
   
@@ -53,7 +53,7 @@ class CategoryCell: UICollectionViewCell {
   
   // MARK: - Private Methods
   private func setupCell() {
-    backgroundColor = UIColor(red: 149/255, green: 74/255, blue: 182/255, alpha: 1)
+      backgroundColor = .purpleButton
     
     layer.cornerRadius = 50
     layer.borderWidth = 2
