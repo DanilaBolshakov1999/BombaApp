@@ -28,7 +28,7 @@ final class AnimationGameViewController: UIViewController {
     return questionLabel
   }()
   
-  private lazy var animationImage: UIImageView = {
+  private lazy var animationImageView: UIImageView = {
     let animationImage = UIImageView()
     animationImage.animationImages = animatedImages(for: "Unknown-")
     animationImage.contentMode = .scaleAspectFill
@@ -38,7 +38,6 @@ final class AnimationGameViewController: UIViewController {
   }()
   
   private var player: AVAudioPlayer?
-  
   private var timer: Timer?
   private var timeLeft = 15
   private var randomQuestion = ""
@@ -47,13 +46,13 @@ final class AnimationGameViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     setupView()
-    animationImage.startAnimating()
+    animationImageView.startAnimating()
     
   }
   
   // Action Methods
   @objc
-  private func addTappedBack() {
+  private func backButtonPressed() {
     if timer?.isValid ?? false {
       
     } else {
@@ -62,17 +61,17 @@ final class AnimationGameViewController: UIViewController {
   }
   
   @objc
-  private func addTappedPause() {
+  private func pauseButtonPressed() {
     if (timer?.isValid ?? false) {
       timer?.invalidate()
       player?.stop()
-      animationImage.stopAnimating()
+      animationImageView.stopAnimating()
       gameData.stopTime = timeLeft
       gameData.stopQuestion = randomQuestion
     } else {
       configureTimer()
       player?.play()
-      animationImage.startAnimating()
+      animationImageView.startAnimating()
     }
   }
   
@@ -82,8 +81,8 @@ final class AnimationGameViewController: UIViewController {
     print(timeLeft)
     
     if timeLeft == 1 {
-      animationImage.animationImages = animatedImages(for: "Unknown-4-")
-      animationImage.startAnimating()
+      animationImageView.animationImages = animatedImages(for: "Unknown-4-")
+      animationImageView.startAnimating()
       configurePlayer(urlName: "BOOM")
     }
     
@@ -92,8 +91,7 @@ final class AnimationGameViewController: UIViewController {
      
       DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
         self.player?.stop()
-        let gameEndViewController = GameEndViewController()
-        self.navigationController?.pushViewController(gameEndViewController, animated: true)
+        self.navigationController?.pushViewController(GameEndViewController(), animated: true)
       }
     }
   }
@@ -102,24 +100,21 @@ final class AnimationGameViewController: UIViewController {
 // MARK: - Setting Views
 private extension AnimationGameViewController {
   func setupView() {
-    view.backgroundColor = .white
+    //view.backgroundColor = .white
     addSubviews()
     setupLayout()
     configureNavController()
     randomTimer()
-//    configureTimer()
     configurePlayer(urlName: "NOK")
     
     if let stopTime = gameData.stopTime, let stopQuestion = gameData.stopQuestion {
       timeLeft = stopTime
       questionLabel.text = stopQuestion
-      animationImage.startAnimating()
+      animationImageView.startAnimating()
       configureTimer()
-      print("www")
     } else {
       configureTimer()
       getRandomQuestion()
-      print("qqq")
     }
   }
   
@@ -130,7 +125,7 @@ private extension AnimationGameViewController {
   func addSubviews() {
     view.addSubview(backgroundView)
     view.addSubview(questionLabel)
-    view.addSubview(animationImage)
+    view.addSubview(animationImageView)
   }
   
   func configureNavController() {
@@ -144,13 +139,13 @@ private extension AnimationGameViewController {
     let leftBarButtonItem = UIBarButtonItem(
       image: UIImage(named: "arrow"),
       style: .done, target: self,
-      action: #selector(addTappedBack)
+      action: #selector(backButtonPressed)
     )
     
     let rightBarButtonItem = UIBarButtonItem(
       image: UIImage(named: "pause"),
       style: .done, target: self,
-      action: #selector(addTappedPause)
+      action: #selector(pauseButtonPressed)
     )
     
     leftBarButtonItem.tintColor = .black
@@ -207,7 +202,7 @@ private extension AnimationGameViewController {
   func setupLayout() {
     backgroundView.translatesAutoresizingMaskIntoConstraints = false
     questionLabel.translatesAutoresizingMaskIntoConstraints = false
-    animationImage.translatesAutoresizingMaskIntoConstraints = false
+    animationImageView.translatesAutoresizingMaskIntoConstraints = false
     
     NSLayoutConstraint.activate([
       backgroundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -219,9 +214,9 @@ private extension AnimationGameViewController {
       questionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
       questionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
       
-      animationImage.topAnchor.constraint(equalTo: questionLabel.bottomAnchor, constant: 150),
-      animationImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-      animationImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+      animationImageView.topAnchor.constraint(equalTo: questionLabel.bottomAnchor, constant: 150),
+      animationImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+      animationImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
     ])
   }
 }

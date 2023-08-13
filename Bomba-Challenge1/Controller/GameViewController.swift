@@ -58,7 +58,7 @@ final class GameViewController: UIViewController {
         return label
     }()
     
-    private lazy var backgroundGame: UIImageView = {
+    private lazy var backgroundGameImageView: UIImageView = {
         let background = UIImageView()
         background.image = UIImage(named: "bombGame")
         background.contentMode = .scaleAspectFit
@@ -66,7 +66,7 @@ final class GameViewController: UIViewController {
         return background
     }()
     
-    lazy var buttonPlay: UIButton = {
+    lazy var playButton: UIButton = {
         var button = UIButton(type: .system)
         button.titleLabel?.font = .systemFont(ofSize: 25)
         button.backgroundColor = UIColor.purpleButton
@@ -90,7 +90,7 @@ final class GameViewController: UIViewController {
         setViews()
         configureNavController()
         setupConstrains()
-        buttonPlay.addTarget(self, action: #selector(startGameButtonPressed), for: .touchUpInside)
+        playButton.addTarget(self, action: #selector(startGameButtonPressed), for: .touchUpInside)
     }
     
     private func configureNavController() {
@@ -105,30 +105,17 @@ final class GameViewController: UIViewController {
         let leftBarButtonItem = UIBarButtonItem(
             image: UIImage(named: "arrow"),
             style: .done, target: self,
-            action: #selector(addTappedBack)
-        )
-        
-        let rightBarButtonItem = UIBarButtonItem(
-            image: UIImage(named: "pause"),
-            style: .done, target: self,
-            action: #selector(addTappedPause)
+            action: #selector(backButtonTapped)
         )
         
         leftBarButtonItem.tintColor = .black
-        rightBarButtonItem.tintColor = .black
         
         navigationItem.leftBarButtonItem = leftBarButtonItem
-        navigationItem.rightBarButtonItem = rightBarButtonItem
-
         navigationController?.navigationBar.standardAppearance = appearance
     }
     
-    @objc private func addTappedBack() {
+    @objc private func backButtonTapped() {
         navigationController?.popViewController(animated: true)
-    }
-    
-    @objc private func addTappedPause() {
-       
     }
 }
 
@@ -140,8 +127,8 @@ extension GameViewController {
         view.addSubview(mainBackgroundView)
         view.addSubview(mainStackView)
         mainStackView.addArrangedSubview(mainLabelView)
-        mainStackView.addArrangedSubview(backgroundGame)
-        mainStackView.addArrangedSubview(buttonPlay)
+        mainStackView.addArrangedSubview(backgroundGameImageView)
+        mainStackView.addArrangedSubview(playButton)
     }
     
     //MARK: - Setup Constraints
@@ -158,8 +145,8 @@ extension GameViewController {
             mainStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             
-            buttonPlay.widthAnchor.constraint(equalToConstant: 274),
-            buttonPlay.heightAnchor.constraint(equalToConstant: 79)
+            playButton.widthAnchor.constraint(equalToConstant: 274),
+            playButton.heightAnchor.constraint(equalToConstant: 79)
         ])
     }
     
