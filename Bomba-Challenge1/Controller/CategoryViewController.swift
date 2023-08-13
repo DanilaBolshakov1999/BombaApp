@@ -128,10 +128,11 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.reuseIdentifier, for: indexPath) as? CategoryCell else { return UICollectionViewCell() }
-        
+      cell.checkmark.image = gameData.categories[indexPath.row].isSelected ? UIImage(named: "checkmarkOn") :  UIImage(named: "checkmarkOff")
         let category = gameData.categories[indexPath.row]
         cell.imageView.image = UIImage(named: category.imageName)
         cell.nameCategory.text = category.name
+      
         
         return cell
     }
@@ -143,7 +144,7 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         gameData.getQuestionArray()
         
         cell.selectCell = !cell.selectCell
-        cell.checkmark.image = cell.selectCell ? UIImage(named: "checkmarkOn") :  UIImage(named: "checkmarkOff")
+      cell.checkmark.image = gameData.categories[indexPath.row].isSelected ? UIImage(named: "checkmarkOn") :  UIImage(named: "checkmarkOff")
         print(gameData.choiceQusetions)
     }
 }
